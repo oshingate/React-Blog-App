@@ -360,6 +360,10 @@ a {
       font-weight: 700;
       color: wheat;
     }
+    span {
+      color: rgb(236, 32, 32);
+      font-size: 0.7rem;
+    }
   }
 }
 
@@ -395,6 +399,16 @@ a {
     margin: 3rem 0;
   }
 }
+.single-article-error {
+  div {
+    height: 20rem;
+    ul {
+      & > * {
+        margin: 0 1rem;
+      }
+    }
+  }
+}
 
 //single-article-comment-sec
 
@@ -421,6 +435,46 @@ a {
       border-radius: 0 0 10px 10px;
       padding: 1rem;
       cursor: pointer;
+    }
+  }
+}
+
+//NewArticle-sec
+.NewArticle-sec {
+  form {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 1rem;
+    // background-color: $pri;
+    input,
+    textarea {
+      width: 100%;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+      &::placeholder {
+        padding-left: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+//settings-sec
+.settings-sec {
+  form {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 1rem;
+    // background-color: $pri;
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.5rem 0;
+      margin-bottom: 1rem;
+      &::placeholder {
+        padding-left: 1rem;
+        font-size: 0.8rem;
+      }
     }
   }
 }

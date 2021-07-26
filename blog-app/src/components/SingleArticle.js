@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader';
 import moment from 'moment';
+import { NavLink } from 'react-router-dom';
 
 class SingleArticle extends Component {
   constructor(props) {
@@ -44,27 +45,49 @@ class SingleArticle extends Component {
               </div>
             </section>
 
-            <section className='single-article-sec container sec-padding'>
-              <h4>{this.state.article.body}</h4>
+            {this.props.token ? (
+              <>
+                <section className='single-article-sec container sec-padding'>
+                  <h4>{this.state.article.body}</h4>
 
-              <hr />
-            </section>
+                  <hr />
+                </section>
 
-            <section className='single-article-comment-sec container sec-padding'>
-              <form method=''>
-                <fieldset>
-                  <label htmlFor=''></label>
-                  <input
-                    type='text'
-                    name='comment'
-                    id='comment'
-                    placeholder='add comment ......'
-                  />
-                  <span></span>
-                </fieldset>
-                <button type='submit'>Add Comment</button>
-              </form>
-            </section>
+                <section className='single-article-comment-sec container sec-padding'>
+                  <form method=''>
+                    <fieldset>
+                      <label htmlFor=''></label>
+                      <input
+                        type='text'
+                        name='comment'
+                        id='comment'
+                        placeholder='add comment ......'
+                      />
+                      <span></span>
+                    </fieldset>
+                    <button type='submit'>Add Comment</button>
+                  </form>
+                </section>
+              </>
+            ) : (
+              <section className='single-article-error'>
+                <div className='container flex center'>
+                  <h2>You have to log in to see blog</h2>
+                  <ul className='flex header-nav'>
+                    <li>
+                      <NavLink className='btn btn-sec' to='/users/login'>
+                        Login
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink className='btn btn-sec' to='/users/signUp'>
+                        Sign Up
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            )}
           </>
         ) : (
           <Loader />

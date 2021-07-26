@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import HomeMain from './HomeMain';
 import { Route } from 'react-router-dom';
 import SingleArticle from './SingleArticle';
+import NewArticle from './NewArticle';
+import Settings from './Settings';
 
 class Home extends Component {
   constructor(props) {
@@ -12,15 +14,34 @@ class Home extends Component {
     return (
       <>
         <Route path='/' exact>
-          <section className='hero-sec  '>
-            <div className='flex center'>
-              <h2 className='sec-heading'>Welcome to blog App</h2>
-            </div>
-          </section>
+          {!this.props.token ? (
+            <section className='hero-sec  '>
+              <div className='flex center'>
+                <h2 className='sec-heading'>Welcome to blog App</h2>
+              </div>
+            </section>
+          ) : (
+            ''
+          )}
 
           <HomeMain />
         </Route>
-        <Route path='/articles/:slug' component={SingleArticle} />
+        <Route
+          path='/articles'
+          exact
+          render={(props) => <NewArticle {...props} token={this.props.token} />}
+        />
+        <Route
+          path='/settings'
+          exact
+          render={(props) => <Settings {...props} token={this.props.token} />}
+        />
+        <Route
+          path='/articles/:slug'
+          render={(props) => (
+            <SingleArticle {...props} token={this.props.token} />
+          )}
+        />
       </>
     );
   }
