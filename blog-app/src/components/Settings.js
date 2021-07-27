@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import Loader from './Loader';
 
 class Settings extends Component {
@@ -47,13 +48,12 @@ class Settings extends Component {
     })
       .then((res) => res.json())
       .then((user) => {
-        console.log('updated user', user);
         this.setState({ user: { user } });
+        this.props.history.push('/');
       });
   };
 
   handleFormChange = (target, field) => {
-    console.log(target.value, field);
     this.setState({
       user: {
         user: {
@@ -69,7 +69,7 @@ class Settings extends Component {
         {this.state.user ? (
           <section className='settings-sec sec-padding container'>
             <h2 className='sec-heading'>Your Settings</h2>
-
+            <button className='btn btn-pri'>Logout</button>
             <form
               onSubmit={(event) => {
                 this.updateUserData(event);
@@ -158,4 +158,4 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+export default withRouter(Settings);

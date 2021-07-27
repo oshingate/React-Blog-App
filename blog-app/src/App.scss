@@ -200,6 +200,7 @@ a {
   padding: 0.5rem 1rem;
   border-radius: 10px;
   display: inline-block;
+  cursor: pointer;
   border: none;
   font-size: 1rem;
 }
@@ -294,8 +295,9 @@ a {
     margin-bottom: 0.8rem;
   }
   .artilce-card-header-img {
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
   }
   .article-card-author {
     padding-left: 0.5rem;
@@ -390,13 +392,26 @@ a {
 //single-article-sec
 
 .single-article-sec {
-  h4 {
+  h3 {
     font-size: 2rem;
+    font-weight: 500;
+    color: $pri;
+    margin-bottom: 2rem;
+    text-decoration: underline;
+  }
+  h4 {
+    font-size: 1.5rem;
     font-weight: 500;
     color: $text-gray;
   }
   hr {
     margin: 3rem 0;
+  }
+  ul {
+    & > * {
+      margin-right: 1rem;
+      color: $text-gray;
+    }
   }
 }
 .single-article-error {

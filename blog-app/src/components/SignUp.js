@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SignUp extends Component {
   constructor(props) {
@@ -24,74 +25,50 @@ class SignUp extends Component {
       username: event.target.username.value,
       password: event.target.password.value,
     };
-    if (data.email && data.username && data.password) {
-      fetch('http://localhost:4000/api/users/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            return res.json().then(({ errors }) => {
-              return Promise.reject(errors);
-            });
-          }
-          return res.json();
-        })
-        .then((userData) => {
-          console.log(userData);
-          alert('user registerd');
-          this.setState({
-            data: {
-              email: '',
-              username: '',
-              password: '',
-              errors: {
-                email: null,
-                username: null,
-                password: null,
-              },
-            },
-          });
-          this.props.history.push('/');
-        })
-        .catch((errors) =>
-          this.setState({
-            data: {
-              errors,
-            },
-          })
-        );
-    }
-  };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const { username, email, password } = this.state;
-  //   fetch(signupURL, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ user: { username, email, password } }),
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         return res.json().then(({ errors }) => {
-  //           return Promise.reject(errors);
-  //         });
-  //       }
-  //       return res.json();
-  //     })
-  //     .then(({ user }) => {
-  //       this.props.updateUser(user);
-  //       this.setState({ username: '', password: '', email: '' });
-  //       this.props.history.push('/');
-  //     })
-  //     .catch((errors) => this.setState({ errors }));
-  // };
+    fetch('http://localhost:4000/api/users/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((errors) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
+      })
+      .then((userData) => {
+        console.log(userData);
+
+        this.setState({
+          data: {
+            email: '',
+            username: '',
+            password: '',
+            errors: {
+              email: null,
+              username: null,
+              password: null,
+            },
+          },
+        });
+        this.props.history.push('/users/login');
+      })
+      .catch((errors) => {
+        this.setState((prevState) => {
+          return {
+            ...prevState,
+            data: {
+              errors: errors,
+            },
+          };
+        });
+      });
+  };
 
   handleSignUpError = (target, field) => {
     switch (field) {
@@ -220,4 +197,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

@@ -18,13 +18,21 @@ class LandingPage extends Component {
     this.setState({ token: data.token, loggedUser: data.user });
   };
 
+  logoutUser = () => {
+    this.setState({ token: null, loggedUser: null });
+  };
+
   render() {
     return (
       <>
         <Header token={this.state.token} loggedUser={this.state.loggedUser} />
         <main>
           <Route path='/'>
-            <Home token={this.state.token} loggedUser={this.state.loggedUser} />
+            <Home
+              token={this.state.token}
+              loggedUser={this.state.loggedUser}
+              logoutUser={this.logoutUser}
+            />
           </Route>
           <Route path='/users/login' exact>
             <Login updateLoggedUser={this.updateLoggedUser} />

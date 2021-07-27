@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import SingleArticle from './SingleArticle';
 import NewArticle from './NewArticle';
 import Settings from './Settings';
+import Profile from './Profile';
 
 class Home extends Component {
   constructor(props) {
@@ -34,8 +35,19 @@ class Home extends Component {
         <Route
           path='/settings'
           exact
-          render={(props) => <Settings {...props} token={this.props.token} />}
+          render={(props) => (
+            <Settings
+              {...props}
+              token={this.props.token}
+              logoutUser={this.props.logoutUser}
+            />
+          )}
         />
+
+        <Route path='/profile/:username'>
+          <Profile />
+        </Route>
+
         <Route
           path='/articles/:slug'
           render={(props) => (

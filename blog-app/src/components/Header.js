@@ -68,7 +68,10 @@ class Header extends Component {
                 </NavLink>
               </li>
               <li>
-                <NavLink className='btn btn-sec' to='/users/signUp'>
+                <NavLink
+                  className='btn btn-sec'
+                  to={`/profile/${this.props.loggedUser.username}`}
+                >
                   {this.props.loggedUser.username}
                 </NavLink>
               </li>

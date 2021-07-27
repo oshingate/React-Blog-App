@@ -237,6 +237,7 @@ a {
   padding: 0.5rem 1rem;
   border-radius: 10px;
   display: inline-block;
+  cursor: pointer;
   border: none;
   font-size: 1rem;
 }
@@ -332,8 +333,9 @@ a {
 }
 
 .home-article-card .artilce-card-header-img {
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
 }
 
 .home-article-card .article-card-author {
@@ -429,14 +431,27 @@ a {
   color: #474646;
 }
 
-.single-article-sec h4 {
+.single-article-sec h3 {
   font-size: 2rem;
+  font-weight: 500;
+  color: #5cb85c;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+.single-article-sec h4 {
+  font-size: 1.5rem;
   font-weight: 500;
   color: #999999;
 }
 
 .single-article-sec hr {
   margin: 3rem 0;
+}
+
+.single-article-sec ul > * {
+  margin-right: 1rem;
+  color: #999999;
 }
 
 .single-article-error div {

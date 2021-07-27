@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import { withRouter } from 'react-router-dom';
 
 class NewArticle extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class NewArticle extends Component {
       title: event.target.title.value,
       description: event.target.description.value,
       body: event.target.body.value,
-      tags: _.uniq(
+      tagList: _.uniq(
         event.target.tags.value.split(',').map((tag) => {
           return tag.trim();
         })
@@ -33,6 +34,7 @@ class NewArticle extends Component {
         .then((res) => res.json())
         .then((createdPost) => {
           console.log(createdPost);
+          this.props.history.push('/');
         });
     }
   };
@@ -100,4 +102,4 @@ class NewArticle extends Component {
   }
 }
 
-export default NewArticle;
+export default withRouter(NewArticle);
