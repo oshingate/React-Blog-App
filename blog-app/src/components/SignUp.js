@@ -42,8 +42,6 @@ class SignUp extends Component {
         return res.json();
       })
       .then((userData) => {
-        console.log(userData);
-
         this.setState({
           data: {
             email: '',

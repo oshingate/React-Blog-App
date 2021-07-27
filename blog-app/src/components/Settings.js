@@ -69,7 +69,7 @@ class Settings extends Component {
         {this.state.user ? (
           <section className='settings-sec sec-padding container'>
             <h2 className='sec-heading'>Your Settings</h2>
-            <button className='btn btn-pri'>Logout</button>
+
             <form
               onSubmit={(event) => {
                 this.updateUserData(event);

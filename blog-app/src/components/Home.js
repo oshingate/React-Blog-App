@@ -35,17 +35,11 @@ class Home extends Component {
         <Route
           path='/settings'
           exact
-          render={(props) => (
-            <Settings
-              {...props}
-              token={this.props.token}
-              logoutUser={this.props.logoutUser}
-            />
-          )}
+          render={(props) => <Settings {...props} token={this.props.token} />}
         />
 
         <Route path='/profile/:username'>
-          <Profile />
+          <Profile loggedUser={this.props.loggedUser} />
         </Route>
 
         <Route
