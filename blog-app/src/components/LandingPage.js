@@ -8,19 +8,34 @@ import SignUp from './SignUp';
 class LandingPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      token: null,
+      loggedUser: null,
+    };
   }
+
+  updateLoggedUser = (data) => {
+    this.setState({ token: data.token, loggedUser: data.user });
+  };
+
+  logoutUser = () => {
+    this.setState({ token: null, loggedUser: null });
+  };
 
   render() {
     return (
       <>
-        <Header />
+        <Header token={this.state.token} loggedUser={this.state.loggedUser} />
         <main>
           <Route path='/'>
-            <Home />
+            <Home
+              token={this.state.token}
+              loggedUser={this.state.loggedUser}
+              logoutUser={this.logoutUser}
+            />
           </Route>
           <Route path='/users/login' exact>
-            <Login />
+            <Login updateLoggedUser={this.updateLoggedUser} />
           </Route>
           <Route path='/users/signup' exact>
             <SignUp />

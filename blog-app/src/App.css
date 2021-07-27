@@ -237,6 +237,7 @@ a {
   padding: 0.5rem 1rem;
   border-radius: 10px;
   display: inline-block;
+  cursor: pointer;
   border: none;
   font-size: 1rem;
 }
@@ -332,8 +333,9 @@ a {
 }
 
 .home-article-card .artilce-card-header-img {
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
 }
 
 .home-article-card .article-card-author {
@@ -404,6 +406,11 @@ a {
   color: wheat;
 }
 
+.login-sec form span {
+  color: #ec2020;
+  font-size: 0.7rem;
+}
+
 .article-hero-sec img {
   height: 3rem;
   width: 3rem;
@@ -424,14 +431,35 @@ a {
   color: #474646;
 }
 
-.single-article-sec h4 {
+.single-article-sec h3 {
   font-size: 2rem;
+  font-weight: 500;
+  color: #5cb85c;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+.single-article-sec h4 {
+  font-size: 1.5rem;
   font-weight: 500;
   color: #999999;
 }
 
 .single-article-sec hr {
   margin: 3rem 0;
+}
+
+.single-article-sec ul > * {
+  margin-right: 1rem;
+  color: #999999;
+}
+
+.single-article-error div {
+  height: 20rem;
+}
+
+.single-article-error div ul > * {
+  margin: 0 1rem;
 }
 
 .single-article-comment-sec form {
@@ -475,5 +503,79 @@ a {
   border-radius: 0 0 10px 10px;
   padding: 1rem;
   cursor: pointer;
+}
+
+.NewArticle-sec form {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+.NewArticle-sec form input,
+.NewArticle-sec form textarea {
+  width: 100%;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.NewArticle-sec form input::-webkit-input-placeholder,
+.NewArticle-sec form textarea::-webkit-input-placeholder {
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.NewArticle-sec form input:-ms-input-placeholder,
+.NewArticle-sec form textarea:-ms-input-placeholder {
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.NewArticle-sec form input::-ms-input-placeholder,
+.NewArticle-sec form textarea::-ms-input-placeholder {
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.NewArticle-sec form input::placeholder,
+.NewArticle-sec form textarea::placeholder {
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.settings-sec form {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+.settings-sec form input,
+.settings-sec form textarea {
+  width: 100%;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.settings-sec form input::-webkit-input-placeholder,
+.settings-sec form textarea::-webkit-input-placeholder {
+  padding-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.settings-sec form input:-ms-input-placeholder,
+.settings-sec form textarea:-ms-input-placeholder {
+  padding-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.settings-sec form input::-ms-input-placeholder,
+.settings-sec form textarea::-ms-input-placeholder {
+  padding-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.settings-sec form input::placeholder,
+.settings-sec form textarea::placeholder {
+  padding-left: 1rem;
+  font-size: 0.8rem;
 }
 /*# sourceMappingURL=App.css.map */
