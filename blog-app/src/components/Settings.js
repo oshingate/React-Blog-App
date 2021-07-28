@@ -37,7 +37,7 @@ class Settings extends Component {
         bio: event.target.bio.value,
       },
     };
-    console.log(data);
+
     fetch('http://localhost:4000/api/user', {
       method: 'PUT',
       headers: {

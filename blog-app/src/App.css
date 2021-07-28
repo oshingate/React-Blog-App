@@ -203,6 +203,12 @@ a {
   display: flex;
 }
 
+.jcfe {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .fw {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -597,5 +603,9 @@ a {
   font-size: 1.5rem;
   font-weight: 800;
   text-align: center;
+}
+
+.profile-hero-div .flex {
+  padding: 0;
 }
 /*# sourceMappingURL=App.css.map */

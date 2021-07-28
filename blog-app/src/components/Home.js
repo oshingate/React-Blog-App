@@ -39,7 +39,10 @@ class Home extends Component {
         />
 
         <Route path='/profile/:username'>
-          <Profile loggedUser={this.props.loggedUser} />
+          <Profile
+            loggedUser={this.props.loggedUser}
+            token={this.props.token}
+          />
         </Route>
 
         <Route

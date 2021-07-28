@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+import HomeArticle from './HomeArticle';
 import Loader from './Loader';
 
 class Profile extends Component {
@@ -10,6 +11,8 @@ class Profile extends Component {
       user: null,
       error: null,
       currentTag: 'my',
+      itsMe: null,
+      articles: null,
     };
   }
 
@@ -20,10 +23,16 @@ class Profile extends Component {
     });
   };
 
-  componentDidMount() {
-    let username = this.props.match.params.username;
+  //function to get profileData
 
-    fetch(`http://localhost:4000/api/profiles/${username}`)
+  profileData = (username, token, loggedUser) => {
+    fetch(`http://localhost:4000/api/profiles/${username}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+    })
       .then((res) => {
         if (!res.ok) {
           return res.json().then((error) => {
@@ -34,9 +43,17 @@ class Profile extends Component {
       })
       .then((user) => {
         this.setState((prevState) => {
+          let itsMe = null;
+
+          if (loggedUser.username !== user.profile.username) {
+            itsMe = false;
+          } else {
+            itsMe = true;
+          }
           return {
             ...prevState,
             user: user.profile,
+            itsMe: itsMe,
           };
         });
       })
@@ -48,7 +65,17 @@ class Profile extends Component {
           };
         });
       });
+  };
+
+  //cdm
+  componentDidMount() {
+    let username = this.props.match.params.username;
+
+    this.profileData(username, this.props.token, this.props.loggedUser);
   }
+
+  //cdu
+  componentDidUpdate(prevProps, prevState) {}
 
   render() {
     return (
@@ -72,7 +99,19 @@ class Profile extends Component {
                     alt='profilePhoto'
                   />
                 </div>
+
                 <h4>{this.state.user.username}</h4>
+                <div className='flex jcfe'>
+                  {this.state.itsMe ? (
+                    <NavLink to='/settings' className='btn btn-sec'>
+                      Edit Profile
+                    </NavLink>
+                  ) : (
+                    <button className='btn btn-sec'>
+                      Follow {this.state.user.username}
+                    </button>
+                  )}
+                </div>
               </div>
             </section>
             <section className='profile-sec container sec-padding'>
@@ -90,7 +129,7 @@ class Profile extends Component {
                       }}
                       href='#'
                     >
-                      My Articles
+                      My Blogs
                     </a>
                   </li>
                   <li>
@@ -105,11 +144,32 @@ class Profile extends Component {
                       }}
                       href='#'
                     >
-                      Favorited Articles
+                      Favorited Blogs
                     </a>
                   </li>
                 </ul>
                 <hr />
+              </div>
+              <div className='home-articles-div'>
+                {this.state.currentTag === 'my' ? (
+                  this.state.user.articles ? (
+                    this.state.user.articles.map((article, i) => {
+                      return <HomeArticle article={article} key={i} />;
+                    })
+                  ) : (
+                    <div className='container '>
+                      <h2 className='sec-heading'>No Blogs to display</h2>
+                    </div>
+                  )
+                ) : this.state.user.favoritedArticles ? (
+                  <div className='container '>
+                    <h2 className='sec-heading'>No Blogs to display</h2>
+                  </div>
+                ) : (
+                  this.state.user.favoritedArticles.map((article, i) => {
+                    return <HomeArticle article={article} key={i} />;
+                  })
+                )}
               </div>
             </section>
           </>
