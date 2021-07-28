@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 class Header extends Component {
   constructor(props) {
@@ -75,6 +75,16 @@ class Header extends Component {
                   {this.props.loggedUser.username}
                 </NavLink>
               </li>
+              <li>
+                <button
+                  onClick={(event) => {
+                    this.props.logoutUser(this.props.history);
+                  }}
+                  className='btn btn-sec'
+                >
+                  Logout
+                </button>
+              </li>
             </ul>
           )}
         </div>
@@ -83,4 +93,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

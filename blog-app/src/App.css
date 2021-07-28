@@ -170,6 +170,10 @@ table {
   color: #5cb85c;
 }
 
+.color-red {
+  color: red;
+}
+
 .color-gray {
   color: #999999;
 }
@@ -197,6 +201,12 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.jcfe {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .fw {
@@ -577,5 +587,25 @@ a {
 .settings-sec form textarea::placeholder {
   padding-left: 1rem;
   font-size: 0.8rem;
+}
+
+.profile-sec .home-tags-div hr {
+  color: red;
+}
+
+.profile-hero-div img {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+}
+
+.profile-hero-div h4 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.profile-hero-div .flex {
+  padding: 0;
 }
 /*# sourceMappingURL=App.css.map */

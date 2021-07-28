@@ -50,8 +50,6 @@ class Login extends Component {
         return res.json();
       })
       .then((user) => {
-        console.log(user);
-
         this.props.updateLoggedUser(user);
         this.props.history.push('/');
       })
