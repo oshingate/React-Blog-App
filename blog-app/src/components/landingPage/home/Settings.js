@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import Loader from './Loader';
+import Loader from '../../Loader';
 
 class Settings extends Component {
   constructor(props) {

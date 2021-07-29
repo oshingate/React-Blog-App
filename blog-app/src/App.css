@@ -293,7 +293,7 @@ a {
 }
 
 .hero-sec .flex {
-  padding: 2rem 3rem;
+  padding: 1rem 3rem;
 }
 
 .hero-sec h2 {
@@ -421,6 +421,10 @@ a {
   font-size: 0.7rem;
 }
 
+.article-hero-sec nav > * {
+  margin-right: 1rem;
+}
+
 .article-hero-sec img {
   height: 3rem;
   width: 3rem;
@@ -513,6 +517,47 @@ a {
   border-radius: 0 0 10px 10px;
   padding: 1rem;
   cursor: pointer;
+}
+
+.single-article-comment-sec .comments-div {
+  margin-top: 1rem;
+}
+
+.single-article-comment-sec .comments-div .comment {
+  max-width: 700px;
+  margin: 0.5rem auto;
+  border: 1px solid #999999;
+  border-radius: 10px;
+}
+
+.single-article-comment-sec .comments-div .comment .comment-body {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+}
+
+.single-article-comment-sec .comments-div .comment .comment-footer {
+  background-color: #c2c0c0;
+  border: none;
+  border-radius: 0 0 10px 10px;
+  padding: 1rem;
+}
+
+.single-article-comment-sec .comments-div .comment .comment-footer img {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.single-article-comment-sec .comments-div .comment .comment-footer h5 {
+  font-size: 1rem;
+  margin: 0.2rem 0;
+}
+
+.single-article-comment-sec .comments-div .comment .comment-footer h6 {
+  font-size: 0.7rem;
 }
 
 .NewArticle-sec form {

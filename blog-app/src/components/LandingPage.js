@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Header from './Header';
-import Home from './Home';
-import Login from './Login';
-import SignUp from './SignUp';
+import Header from './landingPage/Header';
+import Home from './landingPage/Home';
+import Login from './landingPage/Login';
+import SignUp from './landingPage/SignUp';
 
 class LandingPage extends Component {
   constructor(props) {

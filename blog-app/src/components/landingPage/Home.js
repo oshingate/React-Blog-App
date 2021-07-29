@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import HomeMain from './HomeMain';
+import HomeMain from './home/HomeMain';
 import { Route } from 'react-router-dom';
-import SingleArticle from './SingleArticle';
-import NewArticle from './NewArticle';
-import Settings from './Settings';
-import Profile from './Profile';
+import SingleArticle from './home/SingleArticle';
+import NewArticle from './home/NewArticle';
+import Settings from './home/Settings';
+import Profile from './home/Profile';
+import updateArticle from './home/UpdateArticle';
+import UpdateArticle from './home/UpdateArticle';
 
 class Home extends Component {
   constructor(props) {
@@ -25,13 +27,18 @@ class Home extends Component {
             ''
           )}
 
-          <HomeMain />
+          <HomeMain
+            loggedUser={this.props.loggedUser}
+            token={this.props.token}
+          />
         </Route>
+
         <Route
           path='/articles'
           exact
           render={(props) => <NewArticle {...props} token={this.props.token} />}
         />
+
         <Route
           path='/settings'
           exact
@@ -46,9 +53,20 @@ class Home extends Component {
         </Route>
 
         <Route
+          path='/article/:slug/edit'
+          render={(props) => (
+            <UpdateArticle {...props} token={this.props.token} />
+          )}
+        />
+
+        <Route
           path='/articles/:slug'
           render={(props) => (
-            <SingleArticle {...props} token={this.props.token} />
+            <SingleArticle
+              {...props}
+              token={this.props.token}
+              loggedUser={this.props.loggedUser}
+            />
           )}
         />
       </>

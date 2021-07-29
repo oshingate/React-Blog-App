@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import Loader from './Loader';
+import Loader from '../../../Loader';
 
 class Tags extends Component {
   constructor(props) {

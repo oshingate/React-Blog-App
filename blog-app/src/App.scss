@@ -248,7 +248,7 @@ a {
   background-color: $pri;
   padding: 3rem;
   .flex {
-    padding: 2rem 3rem;
+    padding: 1rem 3rem;
   }
   h2 {
     color: white;
@@ -377,6 +377,11 @@ a {
 
 //article-hero-sec
 .article-hero-sec {
+  nav {
+    & > * {
+      margin-right: 1rem;
+    }
+  }
   img {
     height: 3rem;
     width: 3rem;
@@ -456,6 +461,41 @@ a {
       border-radius: 0 0 10px 10px;
       padding: 1rem;
       cursor: pointer;
+    }
+  }
+
+  .comments-div {
+    margin-top: 1rem;
+    .comment {
+      max-width: 700px;
+      margin: 0.5rem auto;
+      border: 1px solid $text-gray;
+      border-radius: 10px;
+      .comment-body {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-radius: 10px;
+      }
+      .comment-footer {
+        background-color: rgb(194, 192, 192);
+        border: none;
+        border-radius: 0 0 10px 10px;
+        padding: 1rem;
+        img {
+          height: 2rem;
+          width: 2rem;
+          border-radius: 50%;
+          margin-right: 0.5rem;
+        }
+        h5 {
+          font-size: 1rem;
+          margin: 0.2rem 0;
+        }
+        h6 {
+          font-size: 0.7rem;
+        }
+      }
     }
   }
 }

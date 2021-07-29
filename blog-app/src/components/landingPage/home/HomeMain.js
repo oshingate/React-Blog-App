@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import HomeArticle from './HomeArticle';
+import HomeArticle from './homeMain/HomeArticle';
 
-import Loader from './Loader';
-import Tags from './Tags';
+import Loader from '../../Loader';
+import Tags from './homeMain/Tags';
 
 class HomeMain extends Component {
   constructor(props) {
@@ -82,7 +82,14 @@ class HomeMain extends Component {
           {this.state.articles ? (
             <div className='home-articles-div'>
               {this.state.articles.map((article, i) => {
-                return <HomeArticle article={article} key={i} />;
+                return (
+                  <HomeArticle
+                    article={article}
+                    key={i}
+                    loggedUser={this.props.loggedUser}
+                    token={this.props.token}
+                  />
+                );
               })}
             </div>
           ) : (
