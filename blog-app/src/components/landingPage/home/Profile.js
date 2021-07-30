@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-import HomeArticle from './HomeArticle';
-import Loader from './Loader';
+import HomeArticle from './homeMain/HomeArticle';
+import Loader from '../../Loader';
 
 class Profile extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class Profile extends Component {
       currentTag: 'my',
       itsMe: null,
       articles: null,
+      following: null,
     };
   }
 
@@ -44,16 +45,27 @@ class Profile extends Component {
       .then((user) => {
         this.setState((prevState) => {
           let itsMe = null;
+          let following = null;
 
           if (loggedUser.username !== user.profile.username) {
             itsMe = false;
+
+            if (
+              user.profile.profile.followers.includes(loggedUser.profile._id)
+            ) {
+              following = true;
+            } else {
+              following = false;
+            }
           } else {
             itsMe = true;
+            following = false;
           }
           return {
             ...prevState,
             user: user.profile,
             itsMe: itsMe,
+            following: following,
           };
         });
       })
@@ -76,6 +88,43 @@ class Profile extends Component {
 
   //cdu
   componentDidUpdate(prevProps, prevState) {}
+
+  //follow user
+  followUser = () => {
+    let username = this.state.user.username;
+
+    fetch(`http://localhost:4000/api/profiles/${username}/follow`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.props.token,
+      },
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        this.setState((prevState) => {
+          return { ...prevState, following: true };
+        });
+      });
+  };
+
+  unFollowUser = () => {
+    let username = this.state.user.username;
+
+    fetch(`http://localhost:4000/api/profiles/${username}/follow`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.props.token,
+      },
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        this.setState((prevState) => {
+          return { ...prevState, following: false };
+        });
+      });
+  };
 
   render() {
     return (
@@ -106,8 +155,22 @@ class Profile extends Component {
                     <NavLink to='/settings' className='btn btn-sec'>
                       Edit Profile
                     </NavLink>
+                  ) : this.state.following ? (
+                    <button
+                      className='btn btn-sec'
+                      onClick={(event) => {
+                        this.unFollowUser();
+                      }}
+                    >
+                      Unfollow {this.state.user.username}
+                    </button>
                   ) : (
-                    <button className='btn btn-sec'>
+                    <button
+                      className='btn btn-sec'
+                      onClick={(event) => {
+                        this.followUser();
+                      }}
+                    >
                       Follow {this.state.user.username}
                     </button>
                   )}
@@ -154,20 +217,34 @@ class Profile extends Component {
                 {this.state.currentTag === 'my' ? (
                   this.state.user.articles ? (
                     this.state.user.articles.map((article, i) => {
-                      return <HomeArticle article={article} key={i} />;
+                      return (
+                        <HomeArticle
+                          article={article}
+                          key={i}
+                          loggedUser={this.props.loggedUser}
+                          token={this.props.token}
+                        />
+                      );
                     })
                   ) : (
                     <div className='container '>
                       <h2 className='sec-heading'>No Blogs to display</h2>
                     </div>
                   )
-                ) : this.state.user.favoritedArticles ? (
+                ) : !this.state.user.favoritedArticles ? (
                   <div className='container '>
                     <h2 className='sec-heading'>No Blogs to display</h2>
                   </div>
                 ) : (
                   this.state.user.favoritedArticles.map((article, i) => {
-                    return <HomeArticle article={article} key={i} />;
+                    return (
+                      <HomeArticle
+                        article={article}
+                        key={i}
+                        loggedUser={this.props.loggedUser}
+                        token={this.props.token}
+                      />
+                    );
                   })
                 )}
               </div>
