@@ -217,20 +217,34 @@ class Profile extends Component {
                 {this.state.currentTag === 'my' ? (
                   this.state.user.articles ? (
                     this.state.user.articles.map((article, i) => {
-                      return <HomeArticle article={article} key={i} />;
+                      return (
+                        <HomeArticle
+                          article={article}
+                          key={i}
+                          loggedUser={this.props.loggedUser}
+                          token={this.props.token}
+                        />
+                      );
                     })
                   ) : (
                     <div className='container '>
                       <h2 className='sec-heading'>No Blogs to display</h2>
                     </div>
                   )
-                ) : this.state.user.favoritedArticles ? (
+                ) : !this.state.user.favoritedArticles ? (
                   <div className='container '>
                     <h2 className='sec-heading'>No Blogs to display</h2>
                   </div>
                 ) : (
                   this.state.user.favoritedArticles.map((article, i) => {
-                    return <HomeArticle article={article} key={i} />;
+                    return (
+                      <HomeArticle
+                        article={article}
+                        key={i}
+                        loggedUser={this.props.loggedUser}
+                        token={this.props.token}
+                      />
+                    );
                   })
                 )}
               </div>

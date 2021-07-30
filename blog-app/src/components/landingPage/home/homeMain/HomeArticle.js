@@ -11,6 +11,7 @@ class HomeArticle extends Component {
       isUserLogged: null,
       isLiked: null,
       article: null,
+      likeCount: null,
     };
   }
 
@@ -23,12 +24,14 @@ class HomeArticle extends Component {
           isLiked: true,
           isUserLogged: true,
           article: this.props.article,
+          likeCount: this.props.article.favoritesCount,
         });
       } else {
         this.setState({
           isLiked: false,
           isUserLogged: true,
           article: this.props.article,
+          likeCount: this.props.article.favoritesCount,
         });
       }
     } else {
@@ -36,6 +39,7 @@ class HomeArticle extends Component {
         isLiked: false,
         isUserLogged: false,
         article: this.props.article,
+        likeCount: this.props.article.favoritesCount,
       });
     }
   }
@@ -43,10 +47,11 @@ class HomeArticle extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.isLiked !== this.state.isLiked) {
       this.setState((prevState) => {
-        return {
-          ...prevState,
-          article: this.props.article,
-        };
+        if (this.props.article.fav)
+          return {
+            ...prevState,
+            article: this.props.article,
+          };
       });
     }
   }
@@ -54,6 +59,8 @@ class HomeArticle extends Component {
   //handleArticleLike
 
   handleArticleLike = () => {
+    console.log('article like clicked');
+
     fetch(
       `http://localhost:4000/api/articles/${this.props.article.slug}/favorite`,
       {
@@ -66,13 +73,19 @@ class HomeArticle extends Component {
     )
       .then((res) => res.json())
       .then((article) => {
-        this.setState({ isLiked: false });
+        console.log(article);
+        this.setState({
+          isLiked: true,
+          article: article.article,
+          likeCount: article.article.favoritesCount + 1,
+        });
       });
   };
 
   //handleArticledDisike
 
   handleArticleDislike = () => {
+    console.log('article dislike clicked');
     fetch(
       `http://localhost:4000/api/articles/${this.props.article.slug}/favorite`,
       {
@@ -85,7 +98,12 @@ class HomeArticle extends Component {
     )
       .then((res) => res.json())
       .then((article) => {
-        this.setState({ isLiked: true });
+        console.log(article.article.favoritesCount);
+        this.setState({
+          isLiked: false,
+          article: article.article,
+          likeCount: article.article.favoritesCount - 1,
+        });
       });
   };
 
@@ -127,7 +145,7 @@ class HomeArticle extends Component {
                   >
                     <path d='m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z' />
                   </svg>
-                  <span>{this.state.article.favoritesCount}</span>
+                  <span>{this.state.likeCount}</span>
                 </div>
               ) : this.state.isLiked ? (
                 <div className='article-card-likes'>
@@ -141,11 +159,11 @@ class HomeArticle extends Component {
                     onClick={(event) => this.handleArticleDislike()}
                   >
                     <path
-                      fill-rule='evenodd'
+                      fillRule='evenodd'
                       d='M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z'
                     />
                   </svg>
-                  <span>{this.state.article.favoritesCount}</span>
+                  <span>{this.state.likeCount}</span>
                 </div>
               ) : (
                 <div className='article-card-likes'>
@@ -160,7 +178,7 @@ class HomeArticle extends Component {
                   >
                     <path d='m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z' />
                   </svg>
-                  <span>{this.state.article.favoritesCount}</span>
+                  <span>{this.state.likeCount}</span>
                 </div>
               )}
             </div>
