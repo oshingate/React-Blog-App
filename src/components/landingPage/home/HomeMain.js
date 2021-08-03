@@ -5,7 +5,6 @@ import HomeArticle from './homeMain/HomeArticle';
 import Loader from '../../Loader';
 import Tags from './homeMain/Tags';
 import { Articles_URL, User_URL } from '../../../utils/constants';
-import { get } from 'harmony-reflect';
 
 class HomeMain extends Component {
   constructor(props) {
