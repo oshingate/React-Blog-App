@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { Register_URL } from '../../utils/constants';
 
 class SignUp extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class SignUp extends Component {
       password: event.target.password.value,
     };
 
-    fetch('http://localhost:4000/api/users/register', {
+    fetch(Register_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

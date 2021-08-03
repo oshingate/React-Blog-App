@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Loader from '../../Loader';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
+import { Articles_URL } from '../../../utils/constants';
 
 class SingleArticle extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class SingleArticle extends Component {
   componentDidMount() {
     let slug = this.props.match.params.slug;
 
-    fetch(`http://localhost:4000/api/articles/${slug}`)
+    fetch(Articles_URL + slug)
       .then((res) => res.json())
       .then((article) => {
         this.setState({
@@ -32,7 +33,7 @@ class SingleArticle extends Component {
     if (prevState.newComment !== this.state.newComment) {
       let slug = this.props.match.params.slug;
 
-      fetch(`http://localhost:4000/api/articles/${slug}`)
+      fetch(Articles_URL + slug)
         .then((res) => res.json())
         .then((article) => {
           this.setState({
@@ -52,17 +53,14 @@ class SingleArticle extends Component {
       let data = {
         body: event.target.comment.value,
       };
-      fetch(
-        `http://localhost:4000/api/articles/${this.state.article.slug}/comments`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: this.props.token,
-          },
-          body: JSON.stringify(data),
-        }
-      )
+      fetch(Articles_URL + this.state.article.slug + '/comments/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.props.token,
+        },
+        body: JSON.stringify(data),
+      })
         .then((res) => {
           return res.json();
         })
@@ -83,16 +81,13 @@ class SingleArticle extends Component {
   removeComment = (comment) => {
     if (comment.author.username === this.props.loggedUser.username) {
       let id = comment._id;
-      fetch(
-        `http://localhost:4000/api/articles/${this.state.article.slug}/comments/${id}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: this.props.token,
-          },
-        }
-      )
+      fetch(Articles_URL + this.state.article.slug + '/comments/' + id, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.props.token,
+        },
+      })
         .then((res) => {
           return res.json();
         })
@@ -112,7 +107,7 @@ class SingleArticle extends Component {
   deleteArticle = () => {
     let slug = this.state.article.slug;
 
-    fetch(`http://localhost:4000/api/articles/${slug}`, {
+    fetch(Articles_URL + slug, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

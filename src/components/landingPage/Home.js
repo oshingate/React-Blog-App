@@ -5,7 +5,7 @@ import SingleArticle from './home/SingleArticle';
 import NewArticle from './home/NewArticle';
 import Settings from './home/Settings';
 import Profile from './home/Profile';
-import updateArticle from './home/UpdateArticle';
+
 import UpdateArticle from './home/UpdateArticle';
 
 class Home extends Component {

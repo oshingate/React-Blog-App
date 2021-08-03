@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { Login_URL } from '../../utils/constants';
 
 class Login extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Login extends Component {
       password: event.target.password.value,
     };
 
-    fetch('http://localhost:4000/api/users/login', {
+    fetch(Login_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

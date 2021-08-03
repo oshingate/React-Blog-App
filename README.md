@@ -1,452 +1,70 @@
-# This React Project Uses Following API
-
-# RealWorld API Spec
-
-## Running API tests locally
-
-To locally run the provided Postman collection against your backend, execute:
-
-```
-APIURL=http://localhost:3000/api ./run-api-tests.sh
-```
-
-For more details, see [`run-api-tests.sh`](run-api-tests.sh).
-
-## Considerations for your backend with [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
-
-If the backend is about to run on a different host/port than the frontend, make sure to handle `OPTIONS` too and return correct `Access-Control-Allow-Origin` and `Access-Control-Allow-Headers` (e.g. `Content-Type`).
-
-### Authentication Header:
-
-`Authorization: Token jwt.token.here`
-
-## JSON Objects returned by API:
-
-Make sure the right content type like `Content-Type: application/json; charset=utf-8` is correctly returned.
-
-### Users (for authentication)
-
-```JSON
-{
-  "user": {
-    "email": "jake@jake.jake",
-    "token": "jwt.token.here",
-    "username": "jake",
-    "bio": "I work at statefarm",
-    "image": null
-  }
-}
-```
-
-### Profile
-
-```JSON
-{
-  "profile": {
-    "username": "jake",
-    "bio": "I work at statefarm",
-    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
-    "following": false
-  }
-}
-```
-
-### Single Article
-
-```JSON
-{
-  "article": {
-    "slug": "how-to-train-your-dragon",
-    "title": "How to train your dragon",
-    "description": "Ever wonder how?",
-    "body": "It takes a Jacobian",
-    "tagList": ["dragons", "training"],
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:48:35.824Z",
-    "favorited": false,
-    "favoritesCount": 0,
-    "author": {
-      "username": "jake",
-      "bio": "I work at statefarm",
-      "image": "https://i.stack.imgur.com/xHWG8.jpg",
-      "following": false
-    }
-  }
-}
-```
-
-### Multiple Articles
-
-```JSON
-{
-  "articles":[{
-    "slug": "how-to-train-your-dragon",
-    "title": "How to train your dragon",
-    "description": "Ever wonder how?",
-    "body": "It takes a Jacobian",
-    "tagList": ["dragons", "training"],
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:48:35.824Z",
-    "favorited": false,
-    "favoritesCount": 0,
-    "author": {
-      "username": "jake",
-      "bio": "I work at statefarm",
-      "image": "https://i.stack.imgur.com/xHWG8.jpg",
-      "following": false
-    }
-  }, {
-    "slug": "how-to-train-your-dragon-2",
-    "title": "How to train your dragon 2",
-    "description": "So toothless",
-    "body": "It a dragon",
-    "tagList": ["dragons", "training"],
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:48:35.824Z",
-    "favorited": false,
-    "favoritesCount": 0,
-    "author": {
-      "username": "jake",
-      "bio": "I work at statefarm",
-      "image": "https://i.stack.imgur.com/xHWG8.jpg",
-      "following": false
-    }
-  }],
-  "articlesCount": 2
-}
-```
-
-### Single Comment
-
-```JSON
-{
-  "comment": {
-    "id": 1,
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:22:56.637Z",
-    "body": "It takes a Jacobian",
-    "author": {
-      "username": "jake",
-      "bio": "I work at statefarm",
-      "image": "https://i.stack.imgur.com/xHWG8.jpg",
-      "following": false
-    }
-  }
-}
-```
-
-### Multiple Comments
-
-```JSON
-{
-  "comments": [{
-    "id": 1,
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:22:56.637Z",
-    "body": "It takes a Jacobian",
-    "author": {
-      "username": "jake",
-      "bio": "I work at statefarm",
-      "image": "https://i.stack.imgur.com/xHWG8.jpg",
-      "following": false
-    }
-  }]
-}
-```
-
-### List of Tags
-
-```JSON
-{
-  "tags": [
-    "reactjs",
-    "angularjs"
-  ]
-}
-```
+# Getting Started with Create React App
 
-### Errors and Status Codes
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-If a request fails any validations, expect a 422 and errors in the following format:
+## Available Scripts
 
-```JSON
-{
-  "errors":{
-    "body": [
-      "can't be empty"
-    ]
-  }
-}
-```
+In the project directory, you can run:
 
-#### Other status codes:
+### `npm start`
 
-401 for Unauthorized requests, when a request requires authentication but it isn't provided
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-403 for Forbidden requests, when a request may be valid but the user doesn't have permissions to perform the action
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-404 for Not found requests, when a resource can't be found to fulfill the request
+### `npm test`
 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Endpoints:
+### `npm run build`
 
-### Authentication:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-`POST /api/users/login`
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Example request body:
-```JSON
-{
-  "user":{
-    "email": "jake@jake.jake",
-    "password": "jakejake"
-  }
-}
-```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-No authentication required, returns a [User](#users-for-authentication)
+### `npm run eject`
 
-Required fields: `email`, `password`
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Registration:
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-`POST /api/users`
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Example request body:
-```JSON
-{
-  "user":{
-    "username": "Jacob",
-    "email": "jake@jake.jake",
-    "password": "jakejake"
-  }
-}
-```
+## Learn More
 
-No authentication required, returns a [User](#users-for-authentication)
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Required fields: `email`, `username`, `password`
+To learn React, check out the [React documentation](https://reactjs.org/).
 
+### Code Splitting
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Get Current User
+### Analyzing the Bundle Size
 
-`GET /api/user`
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-Authentication required, returns a [User](#users-for-authentication) that's the current user
+### Making a Progressive Web App
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
+### Advanced Configuration
 
-### Update User
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-`PUT /api/user`
+### Deployment
 
-Example request body:
-```JSON
-{
-  "user":{
-    "email": "jake@jake.jake",
-    "bio": "I like to skateboard",
-    "image": "https://i.stack.imgur.com/xHWG8.jpg"
-  }
-}
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-Authentication required, returns the [User](#users-for-authentication)
+### `npm run build` fails to minify
 
-
-Accepted fields: `email`, `username`, `password`, `image`, `bio`
-
-
-
-### Get Profile
-
-`GET /api/profiles/:username`
-
-Authentication optional, returns a [Profile](#profile)
-
-
-
-### Follow user
-
-`POST /api/profiles/:username/follow`
-
-Authentication required, returns a [Profile](#profile)
-
-No additional parameters required
-
-
-
-### Unfollow user
-
-`DELETE /api/profiles/:username/follow`
-
-Authentication required, returns a [Profile](#profile)
-
-No additional parameters required
-
-
-
-### List Articles
-
-`GET /api/articles`
-
-Returns most recent articles globally by default, provide `tag`, `author` or `favorited` query parameter to filter results
-
-Query Parameters:
-
-Filter by tag:
-
-`?tag=AngularJS`
-
-Filter by author:
-
-`?author=jake`
-
-Favorited by user:
-
-`?favorited=jake`
-
-Limit number of articles (default is 20):
-
-`?limit=20`
-
-Offset/skip number of articles (default is 0):
-
-`?offset=0`
-
-Authentication optional, will return [multiple articles](#multiple-articles), ordered by most recent first
-
-
-
-### Feed Articles
-
-`GET /api/articles/feed`
-
-Can also take `limit` and `offset` query parameters like [List Articles](#list-articles)
-
-Authentication required, will return [multiple articles](#multiple-articles) created by followed users, ordered by most recent first.
-
-
-### Get Article
-
-`GET /api/articles/:slug`
-
-No authentication required, will return [single article](#single-article)
-
-### Create Article
-
-`POST /api/articles`
-
-Example request body:
-
-```JSON
-{
-  "article": {
-    "title": "How to train your dragon",
-    "description": "Ever wonder how?",
-    "body": "You have to believe",
-    "tagList": ["reactjs", "angularjs", "dragons"]
-  }
-}
-```
-
-Authentication required, will return an [Article](#single-article)
-
-Required fields: `title`, `description`, `body`
-
-Optional fields: `tagList` as an array of Strings
-
-
-
-### Update Article
-
-`PUT /api/articles/:slug`
-
-Example request body:
-
-```JSON
-{
-  "article": {
-    "title": "Did you train your dragon?"
-  }
-}
-```
-
-Authentication required, returns the updated [Article](#single-article)
-
-Optional fields: `title`, `description`, `body`
-
-The `slug` also gets updated when the `title` is changed
-
-
-### Delete Article
-
-`DELETE /api/articles/:slug`
-
-Authentication required
-
-
-
-### Add Comments to an Article
-
-`POST /api/articles/:slug/comments`
-
-Example request body:
-
-```JSON
-{
-  "comment": {
-    "body": "His name was my name too."
-  }
-}
-```
-
-Authentication required, returns the created [Comment](#single-comment)
-
-Required field: `body`
-
-
-
-### Get Comments from an Article
-
-`GET /api/articles/:slug/comments`
-
-Authentication optional, returns [multiple comments](#multiple-comments)
-
-
-
-### Delete Comment
-
-`DELETE /api/articles/:slug/comments/:id`
-
-Authentication required
-
-
-
-### Favorite Article
-
-`POST /api/articles/:slug/favorite`
-
-Authentication required, returns the [Article](#single-article)
-
-No additional parameters required
-
-
-
-### Unfavorite Article
-
-`DELETE /api/articles/:slug/favorite`
-
-Authentication required, returns the [Article](#single-article)
-
-No additional parameters required
-
-
-
-### Get Tags
-
-`GET /api/tags`
-
-No authentication required, returns a [List of Tags](#list-of-tags)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

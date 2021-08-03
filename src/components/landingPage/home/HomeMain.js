@@ -4,6 +4,8 @@ import HomeArticle from './homeMain/HomeArticle';
 
 import Loader from '../../Loader';
 import Tags from './homeMain/Tags';
+import { Articles_URL, User_URL } from '../../../utils/constants';
+import { get } from 'harmony-reflect';
 
 class HomeMain extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class HomeMain extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:4000/api/articles')
+    fetch(Articles_URL)
       .then((res) => res.json())
       .then((articles) => {
         this.setState({ articles: articles.articles });
@@ -25,13 +27,26 @@ class HomeMain extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.currentTag !== this.state.currentTag) {
       if (this.state.currentTag === 'global') {
-        fetch('http://localhost:4000/api/articles')
+        fetch(Articles_URL)
           .then((res) => res.json())
           .then((articles) => {
             this.setState({ articles: articles.articles });
           });
+      } else if (this.state.currentTag === 'personal') {
+        fetch(User_URL + 'following/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: this.props.token,
+          },
+        })
+          .then((res) => res.json())
+          .then((articles) => {
+            console.log('personal tag');
+            this.setState({ articles: articles.articles });
+          });
       } else {
-        fetch(`http://localhost:4000/api/articles/tag/${this.state.currentTag}`)
+        fetch(Articles_URL + `/tag/${this.state.currentTag}`)
           .then((res) => res.json())
           .then((articles) => {
             this.setState({ articles: articles.articles });
@@ -52,13 +67,50 @@ class HomeMain extends Component {
           <div className='home-tags-div'>
             <ul className='flex '>
               {this.state.currentTag === 'global' ? (
-                <li className='color-pri'>
-                  <a className='color-pri active' href='#'>
-                    Global Feed
-                  </a>
-                </li>
+                <>
+                  <li className='color-pri'>
+                    <a
+                      className='color-pri '
+                      href='#'
+                      onClick={(event) => this.handleTagClick('personal')}
+                    >
+                      Personal Feed
+                    </a>
+                  </li>
+                  <li className='color-pri'>
+                    <a className='color-pri active' href='#'>
+                      Global Feed
+                    </a>
+                  </li>
+                </>
+              ) : this.state.currentTag === 'personal' ? (
+                <>
+                  <li className='color-pri'>
+                    <a className='color-pri active ' href='#'>
+                      Personal Feed
+                    </a>
+                  </li>
+                  <li className='color-pri'>
+                    <a
+                      className='color-pri '
+                      href='#'
+                      onClick={(event) => this.handleTagClick('global')}
+                    >
+                      Global Feed
+                    </a>
+                  </li>
+                </>
               ) : (
                 <>
+                  <li className='color-pri'>
+                    <a
+                      className='color-pri '
+                      href='#'
+                      onClick={(event) => this.handleTagClick('personal')}
+                    >
+                      Personal Feed
+                    </a>
+                  </li>
                   <li className='color-pri'>
                     <a
                       className='color-pri'
