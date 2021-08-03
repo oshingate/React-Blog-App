@@ -32,7 +32,7 @@ class HomeMain extends Component {
             this.setState({ articles: articles.articles });
           });
       } else if (this.state.currentTag === 'personal') {
-        fetch(User_URL + 'following/', {
+        fetch(User_URL + '/following/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

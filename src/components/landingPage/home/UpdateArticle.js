@@ -15,7 +15,7 @@ class updateArticle extends Component {
   componentDidMount() {
     let slug = this.props.match.params.slug;
     console.log(slug);
-    fetch(Articles_URL + slug, {
+    fetch(Articles_URL + '/' + slug, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ class updateArticle extends Component {
     };
 
     if (data.title || data.body) {
-      fetch(Articles_URL + slug, {
+      fetch(Articles_URL + '/' + slug, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

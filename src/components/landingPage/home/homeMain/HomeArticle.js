@@ -61,7 +61,7 @@ class HomeArticle extends Component {
   handleArticleLike = () => {
     console.log('article like clicked');
 
-    fetch(Articles_URL + this.props.article.slug + '/favorite', {
+    fetch(Articles_URL + "/"+this.props.article.slug + '/favorite', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ class HomeArticle extends Component {
 
   handleArticleDislike = () => {
     console.log('article dislike clicked');
-    fetch(Articles_URL + this.props.article.slug + '/favorite', {
+    fetch(Articles_URL +"/"+ this.props.article.slug + '/favorite', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ class HomeArticle extends Component {
               </NavLink>
 
               {!this.state.isUserLogged ? (
-                <div className='article-card-likes'>
+                <div className='article-card-likes flex center'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -142,7 +142,7 @@ class HomeArticle extends Component {
                   <span>{this.state.likeCount}</span>
                 </div>
               ) : this.state.isLiked ? (
-                <div className='article-card-likes'>
+                <div className='article-card-likes flex center'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -160,7 +160,7 @@ class HomeArticle extends Component {
                   <span>{this.state.likeCount}</span>
                 </div>
               ) : (
-                <div className='article-card-likes'>
+                <div className='article-card-likes flex center'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'

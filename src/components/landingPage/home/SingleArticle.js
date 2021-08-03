@@ -18,7 +18,7 @@ class SingleArticle extends Component {
   componentDidMount() {
     let slug = this.props.match.params.slug;
 
-    fetch(Articles_URL + slug)
+    fetch(Articles_URL + '/' + slug)
       .then((res) => res.json())
       .then((article) => {
         this.setState({
@@ -33,7 +33,7 @@ class SingleArticle extends Component {
     if (prevState.newComment !== this.state.newComment) {
       let slug = this.props.match.params.slug;
 
-      fetch(Articles_URL + slug)
+      fetch(Articles_URL + '/' + slug)
         .then((res) => res.json())
         .then((article) => {
           this.setState({
@@ -53,7 +53,7 @@ class SingleArticle extends Component {
       let data = {
         body: event.target.comment.value,
       };
-      fetch(Articles_URL + this.state.article.slug + '/comments/', {
+      fetch(Articles_URL + '/' + this.state.article.slug + '/comments/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ class SingleArticle extends Component {
   removeComment = (comment) => {
     if (comment.author.username === this.props.loggedUser.username) {
       let id = comment._id;
-      fetch(Articles_URL + this.state.article.slug + '/comments/' + id, {
+      fetch(Articles_URL + '/' + this.state.article.slug + '/comments/' + id, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ class SingleArticle extends Component {
   deleteArticle = () => {
     let slug = this.state.article.slug;
 
-    fetch(Articles_URL + slug, {
+    fetch(Articles_URL + '/' + slug, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -149,31 +149,35 @@ class SingleArticle extends Component {
                     </h6>
                   </div>
                 </div>
-                {this.props.loggedUser.username ===
-                this.state.article.author.username ? (
-                  <nav>
-                    <NavLink
-                      to={`/article/${this.state.article.slug}/edit`}
-                      className='btn btn-ter'
-                    >
-                      Edit
-                    </NavLink>
-                    <button
-                      className='btn btn-ter'
-                      onClick={(event) => {
-                        this.deleteArticle();
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </nav>
+                {this.props.loggedUser ? (
+                  this.props.loggedUser.username ===
+                  this.state.article.author.username ? (
+                    <nav>
+                      <NavLink
+                        to={`/article/${this.state.article.slug}/edit`}
+                        className='btn btn-ter'
+                      >
+                        Edit
+                      </NavLink>
+                      <button
+                        className='btn btn-ter'
+                        onClick={(event) => {
+                          this.deleteArticle();
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </nav>
+                  ) : (
+                    ''
+                  )
                 ) : (
                   ''
                 )}
               </div>
             </section>
 
-            {this.props.token ? (
+            {this.props.loggedUser ? (
               <>
                 <section className='single-article-sec container sec-padding'>
                   <div className='flex jsb'>
@@ -236,25 +240,29 @@ class SingleArticle extends Component {
                                 </h6>
                               </div>
                             </div>
-                            {comment.author.username ===
-                            this.props.loggedUser.username ? (
-                              <a
-                                href='#'
-                                onClick={(event) => {
-                                  this.removeComment(comment);
-                                }}
-                              >
-                                <svg
-                                  xmlns='http://www.w3.org/2000/svg'
-                                  width='16'
-                                  height='16'
-                                  fill='currentColor'
-                                  className='bi bi-trash-fill'
-                                  viewBox='0 0 16 16'
+                            {this.props.loggedUser ? (
+                              comment.author.username ===
+                              this.props.loggedUser.username ? (
+                                <a
+                                  href='#'
+                                  onClick={(event) => {
+                                    this.removeComment(comment);
+                                  }}
                                 >
-                                  <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z' />
-                                </svg>
-                              </a>
+                                  <svg
+                                    xmlns='http://www.w3.org/2000/svg'
+                                    width='16'
+                                    height='16'
+                                    fill='currentColor'
+                                    className='bi bi-trash-fill'
+                                    viewBox='0 0 16 16'
+                                  >
+                                    <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z' />
+                                  </svg>
+                                </a>
+                              ) : (
+                                ''
+                              )
                             ) : (
                               ''
                             )}

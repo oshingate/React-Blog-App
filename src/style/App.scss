@@ -165,6 +165,9 @@ body {
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
 }
+.height-100 {
+  min-height: 80vh;
+}
 a {
   text-decoration: none;
   color: black;
@@ -238,6 +241,9 @@ a {
   .header-nav {
     & > * {
       margin-right: 1rem;
+    }
+    .active {
+      background-color: chocolate;
     }
   }
 }
@@ -445,14 +451,18 @@ a {
     border: 1px solid $text-gray;
     border-radius: 10px;
     input {
-      width: 100%;
-      padding: 2rem 0;
+      width: 80%;
       border: none;
+      outline: none;
       border-radius: 10px;
       &::placeholder {
         font-size: 1rem;
         padding-left: 2rem;
       }
+    }
+    fieldset {
+      width: 100%;
+      padding: 2rem;
     }
     button {
       width: 100%;

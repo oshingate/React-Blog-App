@@ -11,20 +11,32 @@ class Header extends Component {
       <header className='header'>
         <div className='container flex jsb'>
           <strong>Blog-App</strong>
-          {!this.props.token ? (
+          {!this.props.loggedUser ? (
             <ul className='flex header-nav'>
               <li>
-                <NavLink className='btn btn-sec' to='/'>
+                <NavLink
+                  className='btn btn-sec'
+                  to='/'
+                  activeClassName='active'
+                >
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink className='btn btn-sec' to='/users/login'>
+                <NavLink
+                  className='btn btn-sec'
+                  to='/users/login'
+                  activeClassName='active'
+                >
                   Login
                 </NavLink>
               </li>
               <li>
-                <NavLink className='btn btn-sec' to='/users/signUp'>
+                <NavLink
+                  className='btn btn-sec'
+                  to='/users/signUp'
+                  activeClassName='active'
+                >
                   Sign Up
                 </NavLink>
               </li>
@@ -32,12 +44,20 @@ class Header extends Component {
           ) : (
             <ul className='flex header-nav'>
               <li>
-                <NavLink className='btn btn-sec' to='/'>
+                <NavLink
+                  className='btn btn-sec'
+                  to='/'
+                  activeClassName='active'
+                >
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink className='btn btn-sec' to='/articles'>
+                <NavLink
+                  className='btn btn-sec'
+                  to='/articles'
+                  activeClassName='active'
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -53,7 +73,11 @@ class Header extends Component {
                 </NavLink>
               </li>
               <li>
-                <NavLink className='btn btn-sec' to='/settings'>
+                <NavLink
+                  className='btn btn-sec'
+                  to='/settings'
+                  activeClassName='active'
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -71,6 +95,7 @@ class Header extends Component {
                 <NavLink
                   className='btn btn-sec'
                   to={`/profile/${this.props.loggedUser.username}`}
+                  activeClassName='active'
                 >
                   {this.props.loggedUser.username}
                 </NavLink>

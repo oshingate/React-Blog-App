@@ -28,7 +28,7 @@ class Profile extends Component {
   //function to get profileData
 
   profileData = (username, token, loggedUser) => {
-    fetch(Profiles_URL + username, {
+    fetch(Profiles_URL +"/"+ username, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ class Profile extends Component {
   followUser = () => {
     let username = this.state.user.username;
 
-    fetch(Profiles_URL + username + '/follow', {
+    fetch(Profiles_URL +"/"+ username + '/follow', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ class Profile extends Component {
   unFollowUser = () => {
     let username = this.state.user.username;
 
-    fetch(Profiles_URL + username + '/follow', {
+    fetch(Profiles_URL +"/"+ username + '/follow', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

@@ -6,7 +6,11 @@ class Loader extends Component {
     this.state = {};
   }
   render() {
-    return <div className='donut'></div>;
+    return (
+      <section className='flex center height-100'>
+        <div className='donut'></div>
+      </section>
+    );
   }
 }
 
