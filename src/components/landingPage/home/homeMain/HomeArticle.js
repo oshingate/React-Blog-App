@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
-// console.log(format(new Date(), 'yyyy/MM/dd kk:mm:ss'));
+import { Articles_URL } from '../../../../utils/constants';
 
 class HomeArticle extends Component {
   constructor(props) {
@@ -61,16 +61,13 @@ class HomeArticle extends Component {
   handleArticleLike = () => {
     console.log('article like clicked');
 
-    fetch(
-      `http://localhost:4000/api/articles/${this.props.article.slug}/favorite`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: this.props.token,
-        },
-      }
-    )
+    fetch(Articles_URL + this.props.article.slug + '/favorite', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.props.token,
+      },
+    })
       .then((res) => res.json())
       .then((article) => {
         console.log(article);
@@ -86,16 +83,13 @@ class HomeArticle extends Component {
 
   handleArticleDislike = () => {
     console.log('article dislike clicked');
-    fetch(
-      `http://localhost:4000/api/articles/${this.props.article.slug}/favorite`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: this.props.token,
-        },
-      }
-    )
+    fetch(Articles_URL + this.props.article.slug + '/favorite', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.props.token,
+      },
+    })
       .then((res) => res.json())
       .then((article) => {
         console.log(article.article.favoritesCount);

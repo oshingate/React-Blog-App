@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import Loader from '../../Loader';
+import { Articles_URL } from '../../../utils/constants';
 
 class updateArticle extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class updateArticle extends Component {
   componentDidMount() {
     let slug = this.props.match.params.slug;
     console.log(slug);
-    fetch(`http://localhost:4000/api/articles/${slug}`, {
+    fetch(Articles_URL + slug, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ class updateArticle extends Component {
     };
 
     if (data.title || data.body) {
-      fetch(`http://localhost:4000/api/articles/${slug}`, {
+      fetch(Articles_URL + slug, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import { User_URL } from '../../../utils/constants';
 import Loader from '../../Loader';
 
 class Settings extends Component {
@@ -13,7 +14,7 @@ class Settings extends Component {
   componentDidMount() {
     let token = this.props.token;
 
-    fetch('http://localhost:4000/api/user', {
+    fetch(User_URL, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +39,7 @@ class Settings extends Component {
       },
     };
 
-    fetch('http://localhost:4000/api/user', {
+    fetch(User_URL, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

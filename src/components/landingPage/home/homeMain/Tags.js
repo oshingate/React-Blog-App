@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
+import { Tags_URL } from '../../../../utils/constants';
 import Loader from '../../../Loader';
 
 class Tags extends Component {
@@ -9,7 +10,7 @@ class Tags extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:4000/api/tags')
+    fetch(Tags_URL)
       .then((res) => res.json())
       .then((tags) => {
         this.setState({ tags: tags.tags });

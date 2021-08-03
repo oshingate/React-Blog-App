@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom';
+import { Articles_URL } from '../../../utils/constants';
 
 class NewArticle extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class NewArticle extends Component {
     };
 
     if (data.title || data.body) {
-      fetch('http://localhost:4000/api/articles', {
+      fetch(Articles_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

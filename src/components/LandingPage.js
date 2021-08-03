@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { User_URL } from '../utils/constants';
 import Header from './landingPage/Header';
 import Home from './landingPage/Home';
 import Login from './landingPage/Login';
@@ -17,7 +18,7 @@ class LandingPage extends Component {
     let token = localStorage.getItem('token');
 
     if (token)
-      fetch('http://localhost:4000/api/user', {
+      fetch(User_URL, {
         method: 'GET',
         headers: {
           Authorization: token,

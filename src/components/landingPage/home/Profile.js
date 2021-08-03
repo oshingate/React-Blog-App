@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import HomeArticle from './homeMain/HomeArticle';
 import Loader from '../../Loader';
+import { Profiles_URL } from '../../../utils/constants';
 
 class Profile extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class Profile extends Component {
   //function to get profileData
 
   profileData = (username, token, loggedUser) => {
-    fetch(`http://localhost:4000/api/profiles/${username}`, {
+    fetch(Profiles_URL + username, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -50,9 +51,7 @@ class Profile extends Component {
           if (loggedUser.username !== user.profile.username) {
             itsMe = false;
 
-            if (
-              user.profile.profile.followers.includes(loggedUser.profile._id)
-            ) {
+            if (user.profile.profile.followers.includes(loggedUser._id)) {
               following = true;
             } else {
               following = false;
@@ -93,7 +92,7 @@ class Profile extends Component {
   followUser = () => {
     let username = this.state.user.username;
 
-    fetch(`http://localhost:4000/api/profiles/${username}/follow`, {
+    fetch(Profiles_URL + username + '/follow', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -111,7 +110,7 @@ class Profile extends Component {
   unFollowUser = () => {
     let username = this.state.user.username;
 
-    fetch(`http://localhost:4000/api/profiles/${username}/follow`, {
+    fetch(Profiles_URL + username + '/follow', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
