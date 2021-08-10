@@ -5,6 +5,7 @@ import HomeArticle from './homeMain/HomeArticle';
 import Loader from '../../Loader';
 import Tags from './homeMain/Tags';
 import { Articles_URL, User_URL } from '../../../utils/constants';
+import UserContext from '../../../utils/UserContext';
 
 class HomeMain extends Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class HomeMain extends Component {
     };
   }
 
+  static contextType = UserContext;
+
   componentDidMount() {
     fetch(Articles_URL)
       .then((res) => res.json())
@@ -24,6 +27,8 @@ class HomeMain extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { token } = this.context;
+
     if (prevState.currentTag !== this.state.currentTag) {
       if (this.state.currentTag === 'global') {
         fetch(Articles_URL)
@@ -36,7 +41,7 @@ class HomeMain extends Component {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: this.props.token,
+            Authorization: token,
           },
         })
           .then((res) => res.json())
@@ -133,14 +138,7 @@ class HomeMain extends Component {
           {this.state.articles ? (
             <div className='home-articles-div'>
               {this.state.articles.map((article, i) => {
-                return (
-                  <HomeArticle
-                    article={article}
-                    key={i}
-                    loggedUser={this.props.loggedUser}
-                    token={this.props.token}
-                  />
-                );
+                return <HomeArticle article={article} key={i} />;
               })}
             </div>
           ) : (

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import Loader from '../../Loader';
 import { Articles_URL } from '../../../utils/constants';
+import UserContext from '../../../utils/UserContext';
 
 class updateArticle extends Component {
   constructor(props) {
@@ -12,14 +13,17 @@ class updateArticle extends Component {
     };
   }
 
+  static contextType = UserContext;
+
   componentDidMount() {
     let slug = this.props.match.params.slug;
+    const { token } = this.context;
     console.log(slug);
     fetch(Articles_URL + '/' + slug, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.props.token,
+        Authorization: token,
       },
     })
       .then((res) => res.json())
@@ -38,11 +42,12 @@ class updateArticle extends Component {
     };
 
     if (data.title || data.body) {
+      const { token } = this.context;
       fetch(Articles_URL + '/' + slug, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: this.props.token,
+          Authorization: token,
         },
 
         body: JSON.stringify(data),

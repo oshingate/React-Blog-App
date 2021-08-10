@@ -4,6 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import HomeArticle from './homeMain/HomeArticle';
 import Loader from '../../Loader';
 import { Profiles_URL } from '../../../utils/constants';
+import UserContext from '../../../utils/UserContext';
 
 class Profile extends Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class Profile extends Component {
     };
   }
 
+  static contextType = UserContext;
+
   //changeCurretTag
   changeCurretTag = (name) => {
     this.setState((prevState) => {
@@ -28,7 +31,7 @@ class Profile extends Component {
   //function to get profileData
 
   profileData = (username, token, loggedUser) => {
-    fetch(Profiles_URL +"/"+ username, {
+    fetch(Profiles_URL + '/' + username, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -80,9 +83,11 @@ class Profile extends Component {
 
   //cdm
   componentDidMount() {
+    let { token, loggedUser } = this.context;
+
     let username = this.props.match.params.username;
 
-    this.profileData(username, this.props.token, this.props.loggedUser);
+    this.profileData(username, token, loggedUser);
   }
 
   //cdu
@@ -91,12 +96,13 @@ class Profile extends Component {
   //follow user
   followUser = () => {
     let username = this.state.user.username;
+    let { token } = this.context;
 
-    fetch(Profiles_URL +"/"+ username + '/follow', {
+    fetch(Profiles_URL + '/' + username + '/follow', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.props.token,
+        Authorization: token,
       },
     })
       .then((res) => res.json())
@@ -109,12 +115,13 @@ class Profile extends Component {
 
   unFollowUser = () => {
     let username = this.state.user.username;
+    let { token } = this.context;
 
-    fetch(Profiles_URL +"/"+ username + '/follow', {
+    fetch(Profiles_URL + '/' + username + '/follow', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.props.token,
+        Authorization: token,
       },
     })
       .then((res) => res.json())
@@ -217,12 +224,7 @@ class Profile extends Component {
                   this.state.user.articles ? (
                     this.state.user.articles.map((article, i) => {
                       return (
-                        <HomeArticle
-                          article={article}
-                          key={i}
-                          loggedUser={this.props.loggedUser}
-                          token={this.props.token}
-                        />
+                        <HomeArticle article={article} key={article.title} />
                       );
                     })
                   ) : (
@@ -237,12 +239,7 @@ class Profile extends Component {
                 ) : (
                   this.state.user.favoritedArticles.map((article, i) => {
                     return (
-                      <HomeArticle
-                        article={article}
-                        key={i}
-                        loggedUser={this.props.loggedUser}
-                        token={this.props.token}
-                      />
+                      <HomeArticle article={article} key={article.title} />
                     );
                   })
                 )}

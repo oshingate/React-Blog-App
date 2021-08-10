@@ -13,6 +13,7 @@ class Home extends Component {
     super(props);
     this.state = {};
   }
+
   render() {
     return (
       <>
@@ -27,47 +28,25 @@ class Home extends Component {
             ''
           )}
 
-          <HomeMain
-            loggedUser={this.props.loggedUser}
-            token={this.props.token}
-          />
+          <HomeMain />
         </Route>
 
-        <Route
-          path='/articles'
-          exact
-          render={(props) => <NewArticle {...props} token={this.props.token} />}
-        />
+        <Route path='/articles' exact render={(props) => <NewArticle />} />
 
-        <Route
-          path='/settings'
-          exact
-          render={(props) => <Settings {...props} token={this.props.token} />}
-        />
+        <Route path='/settings' exact render={(props) => <Settings />} />
 
         <Route path='/profile/:username'>
-          <Profile
-            loggedUser={this.props.loggedUser}
-            token={this.props.token}
-          />
+          <Profile />
         </Route>
 
         <Route
           path='/article/:slug/edit'
-          render={(props) => (
-            <UpdateArticle {...props} token={this.props.token} />
-          )}
+          render={(props) => <UpdateArticle />}
         />
 
         <Route
           path='/articles/:slug'
-          render={(props) => (
-            <SingleArticle
-              {...props}
-              token={this.props.token}
-              loggedUser={this.props.loggedUser}
-            />
-          )}
+          render={(props) => <SingleArticle {...props} />}
         />
       </>
     );

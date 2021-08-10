@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom';
 import { Articles_URL } from '../../../utils/constants';
+import UserContext from '../../../utils/UserContext';
 
 class NewArticle extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  static contextType = UserContext;
 
   createNewArticle = (event) => {
     event.preventDefault();
@@ -23,11 +25,12 @@ class NewArticle extends Component {
     };
 
     if (data.title || data.body) {
+      const { token } = this.context;
       fetch(Articles_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: this.props.token,
+          Authorization: token,
         },
 
         body: JSON.stringify(data),

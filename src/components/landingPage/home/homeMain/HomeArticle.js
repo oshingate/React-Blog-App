@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import { Articles_URL } from '../../../../utils/constants';
+import UserContext from '../../../../utils/UserContext';
 
 class HomeArticle extends Component {
   constructor(props) {
@@ -14,12 +15,12 @@ class HomeArticle extends Component {
       likeCount: null,
     };
   }
+  static contextType = UserContext;
 
   componentDidMount() {
-    if (this.props.loggedUser) {
-      if (
-        this.props.loggedUser.favoritedArticles.includes(this.props.article._id)
-      ) {
+    const { loggedUser } = this.context;
+    if (loggedUser) {
+      if (loggedUser.favoritedArticles.includes(this.props.article._id)) {
         this.setState({
           isLiked: true,
           isUserLogged: true,
@@ -59,13 +60,12 @@ class HomeArticle extends Component {
   //handleArticleLike
 
   handleArticleLike = () => {
-    console.log('article like clicked');
-
-    fetch(Articles_URL + "/"+this.props.article.slug + '/favorite', {
+    const { token } = this.context;
+    fetch(Articles_URL + '/' + this.props.article.slug + '/favorite', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.props.token,
+        Authorization: token,
       },
     })
       .then((res) => res.json())
@@ -82,12 +82,12 @@ class HomeArticle extends Component {
   //handleArticledDisike
 
   handleArticleDislike = () => {
-    console.log('article dislike clicked');
-    fetch(Articles_URL +"/"+ this.props.article.slug + '/favorite', {
+    const { token } = this.context;
+    fetch(Articles_URL + '/' + this.props.article.slug + '/favorite', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.props.token,
+        Authorization: token,
       },
     })
       .then((res) => res.json())
