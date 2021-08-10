@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { User_URL } from '../utils/constants';
+import { UserProvider } from '../utils/UserContext';
 import Header from './landingPage/Header';
 import Home from './landingPage/Home';
 import Login from './landingPage/Login';
@@ -49,8 +50,13 @@ class LandingPage extends Component {
   };
 
   render() {
+    let data = {
+      token: this.state.token,
+      loggedUser: this.state.loggedUser,
+    };
+
     return (
-      <>
+      <UserProvider value={data}>
         <Header
           token={this.state.token}
           loggedUser={this.state.loggedUser}
@@ -59,7 +65,7 @@ class LandingPage extends Component {
         <main>
           {' '}
           <Route path='/'>
-            <Home token={this.state.token} loggedUser={this.state.loggedUser} />
+            <Home token={this.state.token} />
           </Route>
           <Route path='/users/login' exact>
             <Login updateLoggedUser={this.updateLoggedUser} />
@@ -68,7 +74,7 @@ class LandingPage extends Component {
             <SignUp />
           </Route>
         </main>
-      </>
+      </UserProvider>
     );
   }
 }

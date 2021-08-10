@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { User_URL } from '../../../utils/constants';
+import UserContext from '../../../utils/UserContext';
 import Loader from '../../Loader';
 
 class Settings extends Component {
@@ -11,8 +12,10 @@ class Settings extends Component {
     };
   }
 
+  static contextType = UserContext;
+
   componentDidMount() {
-    let token = this.props.token;
+    const { token } = this.context;
 
     fetch(User_URL, {
       method: 'GET',
@@ -31,6 +34,7 @@ class Settings extends Component {
   updateUserData = (event) => {
     event.preventDefault();
 
+    const { token } = this.context;
     let data = {
       user: {
         image: event.target.image.value,
@@ -43,7 +47,7 @@ class Settings extends Component {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.props.token,
+        Authorization: token,
       },
       body: JSON.stringify(data),
     })
