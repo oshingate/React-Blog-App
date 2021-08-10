@@ -51,9 +51,6 @@ class LandingPage extends Component {
   render() {
     return (
       <>
-        {null.map((a) => {
-          return a;
-        })}
         <Header
           token={this.state.token}
           loggedUser={this.state.loggedUser}
