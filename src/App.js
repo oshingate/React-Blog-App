@@ -1,12 +1,15 @@
 import './style/App.css';
 import { BrowserRouter } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
+import ErrorBoundary from './utils/ErrorBoundary';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <LandingPage />
+        <ErrorBoundary>
+          <LandingPage />
+        </ErrorBoundary>
       </BrowserRouter>
     </>
   );

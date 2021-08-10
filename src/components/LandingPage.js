@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { User_URL } from '../utils/constants';
 import Header from './landingPage/Header';
 import Home from './landingPage/Home';
@@ -51,21 +51,30 @@ class LandingPage extends Component {
   render() {
     return (
       <>
+        {null.map((a) => {
+          return a;
+        })}
         <Header
           token={this.state.token}
           loggedUser={this.state.loggedUser}
           logoutUser={this.logoutUser}
         />
         <main>
-          <Route path='/'>
-            <Home token={this.state.token} loggedUser={this.state.loggedUser} />
-          </Route>
-          <Route path='/users/login' exact>
-            <Login updateLoggedUser={this.updateLoggedUser} />
-          </Route>
-          <Route path='/users/signup' exact>
-            <SignUp />
-          </Route>
+          <Switch>
+            {' '}
+            <Route path='/'>
+              <Home
+                token={this.state.token}
+                loggedUser={this.state.loggedUser}
+              />
+            </Route>
+            <Route path='/users/login' exact>
+              <Login updateLoggedUser={this.updateLoggedUser} />
+            </Route>
+            <Route path='/users/signup' exact>
+              <SignUp />
+            </Route>
+          </Switch>
         </main>
       </>
     );
