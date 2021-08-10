@@ -57,21 +57,16 @@ class LandingPage extends Component {
           logoutUser={this.logoutUser}
         />
         <main>
-          <Switch>
-            {' '}
-            <Route path='/'>
-              <Home
-                token={this.state.token}
-                loggedUser={this.state.loggedUser}
-              />
-            </Route>
-            <Route path='/users/login' exact>
-              <Login updateLoggedUser={this.updateLoggedUser} />
-            </Route>
-            <Route path='/users/signup' exact>
-              <SignUp />
-            </Route>
-          </Switch>
+          {' '}
+          <Route path='/'>
+            <Home token={this.state.token} loggedUser={this.state.loggedUser} />
+          </Route>
+          <Route path='/users/login' exact>
+            <Login updateLoggedUser={this.updateLoggedUser} />
+          </Route>
+          <Route path='/users/signup' exact>
+            <SignUp />
+          </Route>
         </main>
       </>
     );
