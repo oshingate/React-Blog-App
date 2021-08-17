@@ -65,7 +65,7 @@ class LandingPage extends Component {
         <main>
           {' '}
           <Route path='/'>
-            <Home token={this.state.token} />
+            <Home />
           </Route>
           <Route path='/users/login' exact>
             <Login updateLoggedUser={this.updateLoggedUser} />

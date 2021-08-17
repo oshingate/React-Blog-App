@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Loader from '../../Loader';
 import moment from 'moment';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { Articles_URL } from '../../../utils/constants';
 import UserContext, { UserConsumer } from '../../../utils/UserContext';
 
@@ -318,4 +318,4 @@ class SingleArticle extends Component {
   }
 }
 
-export default SingleArticle;
+export default withRouter(SingleArticle);

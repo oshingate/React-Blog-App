@@ -10,7 +10,7 @@ class Login extends Component {
         email: '',
         password: '',
       },
-      data: { email: 'obshingate@gmail.com', password: 'admin1234' },
+      data: { email: '', password: '' },
     };
   }
 
@@ -91,7 +91,7 @@ class Login extends Component {
                 id='loginPassword'
                 value={this.state.data.password}
                 onChange={(event) => {
-                  this.handleChange(event, 'email');
+                  this.handleChange(event, 'password');
                 }}
               />
               <span>{this.state.errors.password}</span>
