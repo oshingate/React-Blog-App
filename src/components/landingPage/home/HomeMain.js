@@ -138,7 +138,7 @@ class HomeMain extends Component {
           {this.state.articles ? (
             <div className='home-articles-div'>
               {this.state.articles.map((article, i) => {
-                return <HomeArticle article={article} key={i} />;
+                return <HomeArticle article={article} key={article.slug} />;
               })}
             </div>
           ) : (

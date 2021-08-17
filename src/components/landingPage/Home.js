@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import HomeMain from './home/HomeMain';
 import { Route } from 'react-router-dom';
 import SingleArticle from './home/SingleArticle';
@@ -7,50 +7,48 @@ import Settings from './home/Settings';
 import Profile from './home/Profile';
 
 import UpdateArticle from './home/UpdateArticle';
+import UserContext from '../../utils/UserContext';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function Home(props) {
+  let { token } = useContext(UserContext);
 
-  render() {
-    return (
-      <>
-        <Route path='/' exact>
-          {!this.props.token ? (
-            <section className='hero-sec  '>
-              <div className='flex center'>
-                <h2 className='sec-heading'>Welcome to blog App</h2>
-              </div>
-            </section>
-          ) : (
-            ''
-          )}
+  return (
+    <>
+      <Route path='/' exact>
+        {!token ? (
+          <section className='hero-sec  '>
+            <div className='flex center'>
+              <h2 className='sec-heading'>Welcome to blog App</h2>
+            </div>
+          </section>
+        ) : (
+          ''
+        )}
 
-          <HomeMain />
-        </Route>
+        <HomeMain />
+      </Route>
 
-        <Route path='/articles' exact render={(props) => <NewArticle />} />
+      <Route path='/articles' exact>
+        <NewArticle />
+      </Route>
 
-        <Route path='/settings' exact render={(props) => <Settings />} />
+      <Route path='/settings' exact>
+        <Settings />
+      </Route>
 
-        <Route path='/profile/:username'>
-          <Profile />
-        </Route>
+      <Route path='/profile/:username'>
+        <Profile />
+      </Route>
 
-        <Route
-          path='/article/:slug/edit'
-          render={(props) => <UpdateArticle />}
-        />
+      <Route path='/article/:slug/edit'>
+        <UpdateArticle />
+      </Route>
 
-        <Route
-          path='/articles/:slug'
-          render={(props) => <SingleArticle {...props} />}
-        />
-      </>
-    );
-  }
+      <Route path='/articles/:slug'>
+        <SingleArticle />
+      </Route>
+    </>
+  );
 }
 
 export default Home;
