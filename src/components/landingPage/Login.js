@@ -86,7 +86,7 @@ class Login extends Component {
             <fieldset>
               <label>Enter Password</label>
               <input
-                type='text'
+                type='password'
                 name='password'
                 id='loginPassword'
                 value={this.state.data.password}
