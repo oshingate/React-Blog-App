@@ -158,12 +158,12 @@ class Profile extends Component {
                 <h4>{this.state.user.username}</h4>
                 <div className='flex jcfe'>
                   {this.state.itsMe ? (
-                    <NavLink to='/settings' className='btn btn-sec'>
+                    <NavLink to='/settings' className='btn btn-pri'>
                       Edit Profile
                     </NavLink>
                   ) : this.state.following ? (
                     <button
-                      className='btn btn-sec'
+                      className='btn btn-pri'
                       onClick={(event) => {
                         this.unFollowUser();
                       }}
@@ -172,7 +172,7 @@ class Profile extends Component {
                     </button>
                   ) : (
                     <button
-                      className='btn btn-sec'
+                      className='btn btn-pri'
                       onClick={(event) => {
                         this.followUser();
                       }}

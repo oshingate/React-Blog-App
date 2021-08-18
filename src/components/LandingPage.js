@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { User_URL } from '../utils/constants';
 import { UserProvider } from '../utils/UserContext';
+import Footer from './landingPage/Footer';
 import Header from './landingPage/Header';
 import Home from './landingPage/Home';
 import Login from './landingPage/Login';
@@ -74,6 +75,7 @@ class LandingPage extends Component {
             <SignUp />
           </Route>
         </main>
+        <Footer />
       </UserProvider>
     );
   }

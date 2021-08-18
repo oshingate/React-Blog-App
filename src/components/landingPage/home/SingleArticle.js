@@ -141,7 +141,7 @@ class SingleArticle extends Component {
                       <h2>{this.state.article.title}</h2>
                     </div>
                     <div className='flex jsb'>
-                      <div className='flex'>
+                      <div className='flex mobilFlex-80 '>
                         {' '}
                         <img
                           src={
@@ -167,12 +167,12 @@ class SingleArticle extends Component {
                           <nav>
                             <NavLink
                               to={`/article/${this.state.article.slug}/edit`}
-                              className='btn btn-ter'
+                              className='btn btn-pri'
                             >
                               Edit
                             </NavLink>
                             <button
-                              className='btn btn-ter'
+                              className='btn btn-pri'
                               onClick={(event) => {
                                 this.deleteArticle();
                               }}

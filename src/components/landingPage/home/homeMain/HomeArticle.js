@@ -19,6 +19,7 @@ class HomeArticle extends Component {
 
   componentDidMount() {
     const { loggedUser } = this.context;
+
     if (loggedUser) {
       if (loggedUser.favoritedArticles.includes(this.props.article._id)) {
         this.setState({
@@ -195,7 +196,7 @@ class HomeArticle extends Component {
               <ul className='flex'>
                 {this.state.article.tagList.map((tag, i) => {
                   return (
-                    <li className='article-tags' key={tag}>
+                    <li className='btn btn-sec' key={tag}>
                       {tag}
                     </li>
                   );

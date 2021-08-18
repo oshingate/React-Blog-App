@@ -18,7 +18,7 @@ class Tags extends Component {
   }
   render() {
     return (
-      <section className='tags-sec flex-20'>
+      <section className='tags-sec flex-20 mobilFlex-80 '>
         <div>
           <h2>Tags</h2>
           {this.state.tags ? (

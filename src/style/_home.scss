@@ -1,0 +1,110 @@
+//hero-sec
+
+.hero-sec {
+  background-color: #4f9e9a;
+  padding: 3rem;
+  .flex {
+    padding: 1rem 3rem;
+  }
+  h2 {
+    color: white;
+    font-size: 2rem;
+  }
+}
+
+//tags-sec
+.tags-sec {
+  background-color: $gray;
+
+  & > * {
+    padding: 1rem;
+  }
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  ul {
+    // display: flex;
+    li {
+      margin: 0.25rem;
+      a:hover {
+        background-color: rgb(109, 74, 165);
+      }
+      .btn-sec {
+        font-size: 0.7em;
+        padding: 0.2rem 0.5rem;
+      }
+    }
+  }
+}
+
+//home-tags-div
+
+.home-tags-div {
+  .active {
+    border-bottom: 2px solid $pri;
+  }
+  li {
+    margin-right: 1rem;
+  }
+}
+
+//home-article-card
+
+.home-article-card {
+  padding: 1rem;
+  border-bottom: 1px solid rgb(209, 206, 206);
+  & > * {
+    margin-bottom: 0.8rem;
+  }
+  .artilce-card-header-img {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+  }
+  .article-card-author {
+    padding-left: 0.5rem;
+    h5 {
+      margin-bottom: 0.3rem;
+      color: $pri;
+    }
+    h6 {
+      font-size: 0.8rem;
+      color: $text-gray;
+    }
+  }
+  .article-card-likes {
+    padding: 0.5rem;
+    border: 1px solid $pri;
+    background-color: $gray;
+    svg {
+      cursor: pointer;
+    }
+    & > * {
+      color: $pri;
+      margin-right: 0.4rem;
+    }
+  }
+  .article-card-body {
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    h5 {
+      font-size: 1rem;
+      color: $text-gray;
+      margin-top: 0.5rem;
+    }
+  }
+  .article-card-footer {
+    a:hover {
+      color: white;
+      background-color: rgb(109, 74, 165);
+    }
+    .btn-sec {
+      margin: 0 0.5rem;
+    }
+  }
+}

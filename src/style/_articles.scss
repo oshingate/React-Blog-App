@@ -1,0 +1,148 @@
+//article-hero-sec
+.article-hero-sec {
+  nav {
+    & > * {
+      margin-right: 1rem;
+    }
+  }
+  img {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+  }
+  .article-sec-author {
+    padding-left: 0.5rem;
+    h5 {
+      margin-bottom: 0.3rem;
+      color: black;
+    }
+    h6 {
+      font-size: 0.8rem;
+      color: rgb(71, 70, 70);
+    }
+  }
+}
+
+//single-article-sec
+
+.single-article-sec {
+  h3 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: $pri;
+    margin-bottom: 2rem;
+    text-decoration: underline;
+  }
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $text-gray;
+  }
+  hr {
+    margin: 3rem 0;
+  }
+  ul {
+    & > * {
+      margin-right: 1rem;
+      color: $text-gray;
+    }
+  }
+}
+.single-article-error {
+  div {
+    height: 20rem;
+    ul {
+      & > * {
+        margin: 0 1rem;
+      }
+    }
+  }
+}
+
+//single-article-comment-sec
+
+.single-article-comment-sec {
+  form {
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid $text-gray;
+    border-radius: 10px;
+    input {
+      width: 80%;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      &::placeholder {
+        font-size: 1rem;
+        padding-left: 2rem;
+      }
+    }
+    fieldset {
+      width: 100%;
+      padding: 2rem;
+    }
+    button {
+      width: 100%;
+      background-color: $text-gray;
+      border: none;
+      border-radius: 0 0 10px 10px;
+      padding: 1rem;
+      cursor: pointer;
+    }
+  }
+
+  .comments-div {
+    margin-top: 1rem;
+    .comment {
+      max-width: 700px;
+      margin: 0.5rem auto;
+      border: 1px solid $text-gray;
+      border-radius: 10px;
+      .comment-body {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-radius: 10px;
+      }
+      .comment-footer {
+        background-color: rgb(194, 192, 192);
+        border: none;
+        border-radius: 0 0 10px 10px;
+        padding: 1rem;
+        img {
+          height: 2rem;
+          width: 2rem;
+          border-radius: 50%;
+          margin-right: 0.5rem;
+        }
+        h5 {
+          font-size: 1rem;
+          margin: 0.2rem 0;
+        }
+        h6 {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+}
+
+//NewArticle-sec
+.NewArticle-sec {
+  form {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 1rem;
+    // background-color: $pri;
+    input,
+    textarea {
+      width: 100%;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+      &::placeholder {
+        padding-left: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}

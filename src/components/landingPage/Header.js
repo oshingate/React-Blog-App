@@ -5,14 +5,13 @@ function Header(props) {
   return (
     <header className='header'>
       <div className='container flex jsb'>
-        <strong>Blog-App</strong>
+        <NavLink to='/'>
+          {' '}
+          <strong>Blog-App</strong>
+        </NavLink>
+
         {!props.loggedUser ? (
           <ul className='flex header-nav'>
-            <li>
-              <NavLink className='btn btn-sec' to='/' activeClassName='active'>
-                Home
-              </NavLink>
-            </li>
             <li>
               <NavLink
                 className='btn btn-sec'
@@ -34,11 +33,6 @@ function Header(props) {
           </ul>
         ) : (
           <ul className='flex header-nav'>
-            <li>
-              <NavLink className='btn btn-sec' to='/' activeClassName='active'>
-                Home
-              </NavLink>
-            </li>
             <li>
               <NavLink
                 className='btn btn-sec'
