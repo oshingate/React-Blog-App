@@ -133,37 +133,49 @@ table {
   border-spacing: 0;
 }
 
-@-webkit-keyframes donut-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+@-webkit-keyframes bouncing-loader {
+  to {
+    opacity: 0.1;
+    -webkit-transform: translate3d(0, -16px, 0);
+            transform: translate3d(0, -16px, 0);
   }
 }
 
-@keyframes donut-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+@keyframes bouncing-loader {
+  to {
+    opacity: 0.1;
+    -webkit-transform: translate3d(0, -16px, 0);
+            transform: translate3d(0, -16px, 0);
   }
 }
 
-.donut {
-  display: inline-block;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #7983ff;
+.bouncing-loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bouncing-loader > div {
+  width: 16px;
+  height: 16px;
+  margin: 3rem 0.2rem;
+  background: #8385aa;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  -webkit-animation: donut-spin 1.2s linear infinite;
-          animation: donut-spin 1.2s linear infinite;
+  -webkit-animation: bouncing-loader 0.6s infinite alternate;
+          animation: bouncing-loader 0.6s infinite alternate;
+}
+
+.bouncing-loader > div:nth-child(2) {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+.bouncing-loader > div:nth-child(3) {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
 }
 
 .color-pri {
@@ -199,6 +211,36 @@ a {
 
 .sec-padding {
   padding: 2rem 0;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-pri {
+  background-color: #5cb85c;
+  color: wheat;
+}
+
+.btn-sec {
+  background-color: #818a91;
+  color: white;
+}
+
+.btn-ter {
+  background-color: #f3f3f3;
+  border: 1px solid #999999;
+}
+
+.sec-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .flex {
@@ -247,38 +289,10 @@ a {
   margin: 1%;
 }
 
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-  font-size: 1rem;
-}
-
-.btn-pri {
-  background-color: #5cb85c;
-  color: wheat;
-}
-
-.btn-sec {
-  background-color: #818a91;
-  color: white;
-}
-
-.btn-ter {
-  background-color: #f3f3f3;
-  border: 1px solid #999999;
-}
-
-.sec-heading {
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-}
-
 .header {
   padding: 1rem;
+  background-color: #f3f3f3;
+  margin-bottom: 2rem;
 }
 
 .header strong {
@@ -291,12 +305,28 @@ a {
   margin-right: 1rem;
 }
 
+.header .header-nav a:hover {
+  background-color: chocolate;
+}
+
 .header .header-nav .active {
   background-color: chocolate;
 }
 
+footer {
+  padding: 1rem;
+  background-color: #f3f3f3;
+  margin-top: 1rem;
+}
+
+footer small {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #999999;
+}
+
 .hero-sec {
-  background-color: #5cb85c;
+  background-color: #4f9e9a;
   padding: 3rem;
 }
 
@@ -326,6 +356,10 @@ a {
 
 .tags-sec ul li {
   margin: 0.25rem;
+}
+
+.tags-sec ul li a:hover {
+  background-color: #6d4aa5;
 }
 
 .tags-sec ul li .btn-sec {
@@ -376,6 +410,10 @@ a {
   background-color: #f3f3f3;
 }
 
+.home-article-card .article-card-likes svg {
+  cursor: pointer;
+}
+
 .home-article-card .article-card-likes > * {
   color: #5cb85c;
   margin-right: 0.4rem;
@@ -392,14 +430,13 @@ a {
   margin-top: 0.5rem;
 }
 
-.home-article-card .article-tags {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #f3f3f3;
-  border: 1px solid #999999;
-  margin: 0.5rem;
-  border-radius: 10px;
-  color: #999999;
+.home-article-card .article-card-footer a:hover {
+  color: white;
+  background-color: #6d4aa5;
+}
+
+.home-article-card .article-card-footer .btn-sec {
+  margin: 0 0.5rem;
 }
 
 .login-sec form {
@@ -616,11 +653,14 @@ a {
   padding: 1rem;
 }
 
+.settings-sec form fieldset {
+  margin-bottom: 1rem;
+}
+
 .settings-sec form input,
 .settings-sec form textarea {
   width: 100%;
   padding: 0.5rem 0;
-  margin-bottom: 1rem;
 }
 
 .settings-sec form input::-webkit-input-placeholder,
@@ -665,5 +705,92 @@ a {
 
 .profile-hero-div .flex {
   padding: 0;
+}
+
+@media all and (max-width: 400px) {
+  body {
+    font-size: 10px;
+  }
+  .container {
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .mobilFlex-80 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 98%;
+            flex: 0 1 98%;
+    margin: 1%;
+  }
+  .btn {
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.5rem;
+  }
+  .header {
+    margin-bottom: 1rem;
+  }
+  .hero-sec .flex {
+    padding: 1rem 0;
+  }
+  .hero-sec .flex nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .home-sec {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+}
+
+@media all and (max-width: 1050px) {
+  body {
+    font-size: 12px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .mobilFlex-80 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 98%;
+            flex: 0 1 98%;
+    margin: 1%;
+  }
+  .btn {
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.5rem;
+  }
+  .header {
+    margin-bottom: 1rem;
+  }
+  .hero-sec .flex {
+    padding: 1rem 0;
+  }
+  .hero-sec .flex nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .home-sec {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
 }
 /*# sourceMappingURL=App.css.map */

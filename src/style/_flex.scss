@@ -1,0 +1,25 @@
+.flex {
+  display: flex;
+}
+.jcfe {
+  justify-content: flex-end;
+}
+.fw {
+  flex-wrap: wrap;
+}
+.jsb {
+  justify-content: space-between;
+}
+.center {
+  justify-content: center;
+  align-items: center;
+}
+.flex-20 {
+  flex: 0 1 18%;
+  margin: 1%;
+}
+.flex-80 {
+  flex: 0 1 78%;
+
+  margin: 1%;
+}

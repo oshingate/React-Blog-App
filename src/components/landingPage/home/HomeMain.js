@@ -67,7 +67,7 @@ class HomeMain extends Component {
   render() {
     return (
       <div className='container flex fw sec-padding'>
-        <section className='home-sec flex-80'>
+        <section className='home-sec flex-80 mobilFlex-80 '>
           <div className='home-tags-div'>
             <ul className='flex '>
               {this.state.currentTag === 'global' ? (
