@@ -4,11 +4,15 @@
   background-color: $gray;
   margin-bottom: 2rem;
   strong {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 900;
     color: $pri;
+    font-style: italic;
   }
   .header-nav {
+    svg {
+      margin-right: 0.4rem;
+    }
     & > * {
       margin-right: 1rem;
     }

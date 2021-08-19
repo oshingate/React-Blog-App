@@ -185,7 +185,7 @@ class SignUp extends Component {
               <span> {this.state.data.errors.password}</span>
             </fieldset>
             <fieldset className='flex center'>
-              <button type='submit' className='btn btn-ter'>
+              <button type='submit' className='btn btn-pri'>
                 Submit
               </button>
             </fieldset>

@@ -243,6 +243,10 @@ a {
   text-align: center;
 }
 
+main {
+  min-height: 75vh;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -296,9 +300,14 @@ a {
 }
 
 .header strong {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 900;
   color: #5cb85c;
+  font-style: italic;
+}
+
+.header .header-nav svg {
+  margin-right: 0.4rem;
 }
 
 .header .header-nav > * {
@@ -358,8 +367,14 @@ footer small {
   margin: 0.25rem;
 }
 
+.tags-sec ul li a {
+  background-color: #5cb85c;
+  color: wheat;
+}
+
 .tags-sec ul li a:hover {
-  background-color: #6d4aa5;
+  background-color: green;
+  color: white;
 }
 
 .tags-sec ul li .btn-sec {
@@ -432,18 +447,29 @@ footer small {
 
 .home-article-card .article-card-footer a:hover {
   color: white;
-  background-color: #6d4aa5;
+  background-color: green;
 }
 
-.home-article-card .article-card-footer .btn-sec {
-  margin: 0 0.5rem;
+.home-article-card .article-card-footer .article-tag {
+  padding: 0.5rem 0.5rem;
+  margin-right: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: rgba(214, 211, 211, 0.973);
+  color: rgba(0, 0, 0, 0.418);
+}
+
+.login-sec .sec-heading {
+  color: #5cb85c;
 }
 
 .login-sec form {
-  background-color: #5cb85c;
+  background: -webkit-gradient(linear, left bottom, right top, from(#69cae2), to(#0b72e7));
+  background: linear-gradient(to top right, #69cae2, #0b72e7);
   padding: 1rem;
   max-width: 400px;
-  margin: 10rem auto;
+  margin: 3rem auto;
   border-radius: 10px;
 }
 
@@ -464,6 +490,16 @@ footer small {
 .login-sec form span {
   color: #ec2020;
   font-size: 0.7rem;
+}
+
+.login-sec .btn-pri:hover {
+  background-color: green;
+  color: white;
+}
+
+.article-hero-sec nav .btn-pri:hover {
+  background-color: green;
+  color: white;
 }
 
 .article-hero-sec nav > * {
@@ -588,7 +624,7 @@ footer small {
 }
 
 .single-article-comment-sec .comments-div .comment .comment-footer {
-  background-color: #c2c0c0;
+  background-color: #ec7936;
   border: none;
   border-radius: 0 0 10px 10px;
   padding: 1rem;
@@ -689,6 +725,11 @@ footer small {
 
 .profile-sec .home-tags-div hr {
   color: red;
+}
+
+.profile-hero .btn-pri:hover {
+  background-color: green;
+  color: white;
 }
 
 .profile-hero-div img {

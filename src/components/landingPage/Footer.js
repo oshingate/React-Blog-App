@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className='container flex center'>
+    <footer className=' flex center'>
       <small>&copy; oshingate@gmail.com</small>
     </footer>
   );

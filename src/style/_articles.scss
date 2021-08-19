@@ -1,6 +1,10 @@
 //article-hero-sec
 .article-hero-sec {
   nav {
+    .btn-pri:hover {
+      background-color: green;
+      color: white;
+    }
     & > * {
       margin-right: 1rem;
     }
@@ -105,7 +109,7 @@
         border-radius: 10px;
       }
       .comment-footer {
-        background-color: rgb(194, 192, 192);
+        background-color: rgb(236, 121, 54);
         border: none;
         border-radius: 0 0 10px 10px;
         padding: 1rem;

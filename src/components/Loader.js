@@ -7,10 +7,7 @@ class Loader extends Component {
   }
   render() {
     return (
-      // <section className='flex center height-100'>
-      //   <div className='donut'></div>
-      // </section>
-      <div class='bouncing-loader'>
+      <div className='bouncing-loader'>
         <div></div>
         <div></div>
         <div></div>

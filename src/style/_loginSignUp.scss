@@ -1,12 +1,20 @@
 //login-sec
 
 .login-sec {
+  .sec-heading {
+    color: $pri;
+  }
   form {
-    background-color: $pri;
+    background: linear-gradient(
+      to top right,
+      rgb(105, 202, 226),
+      rgb(11, 114, 231)
+    );
     padding: 1rem;
     max-width: 400px;
-    margin: 10rem auto;
+    margin: 3rem auto;
     border-radius: 10px;
+
     input {
       width: 100%;
       margin: 1rem 0;
@@ -23,5 +31,9 @@
       color: rgb(236, 32, 32);
       font-size: 0.7rem;
     }
+  }
+  .btn-pri:hover {
+    background-color: green;
+    color: white;
   }
 }

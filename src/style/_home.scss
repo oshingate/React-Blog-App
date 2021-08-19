@@ -26,11 +26,15 @@
     margin-bottom: 1rem;
   }
   ul {
-    // display: flex;
     li {
       margin: 0.25rem;
+      a {
+        background-color: $pri;
+        color: wheat;
+      }
       a:hover {
-        background-color: rgb(109, 74, 165);
+        background-color: green;
+        color: white;
       }
       .btn-sec {
         font-size: 0.7em;
@@ -101,10 +105,16 @@
   .article-card-footer {
     a:hover {
       color: white;
-      background-color: rgb(109, 74, 165);
+      background-color: green;
     }
-    .btn-sec {
-      margin: 0 0.5rem;
+    .article-tag {
+      padding: 0.5rem 0.5rem;
+      margin-right: 0.3rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border-radius: 10px;
+      background-color: rgba(214, 211, 211, 0.973);
+      color: rgba(0, 0, 0, 0.418);
     }
   }
 }

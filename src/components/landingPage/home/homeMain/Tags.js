@@ -33,7 +33,7 @@ class Tags extends Component {
                         this.props.handleTagClick(tag);
                       }}
                     >
-                      {tag}
+                      # {tag}
                     </a>
                   </li>
                 );

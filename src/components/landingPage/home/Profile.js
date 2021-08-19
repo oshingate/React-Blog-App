@@ -156,7 +156,7 @@ class Profile extends Component {
                 </div>
 
                 <h4>{this.state.user.username}</h4>
-                <div className='flex jcfe'>
+                <div className='profile-hero flex jcfe'>
                   {this.state.itsMe ? (
                     <NavLink to='/settings' className='btn btn-pri'>
                       Edit Profile
