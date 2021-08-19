@@ -14,7 +14,7 @@ function Header(props) {
           <ul className='flex header-nav'>
             <li>
               <NavLink
-                className='btn btn-sec'
+                className='btn btn-quar'
                 to='/users/login'
                 activeClassName='active'
               >
@@ -23,7 +23,7 @@ function Header(props) {
             </li>
             <li>
               <NavLink
-                className='btn btn-sec'
+                className='btn btn-quar'
                 to='/users/signUp'
                 activeClassName='active'
               >
@@ -35,7 +35,7 @@ function Header(props) {
           <ul className='flex header-nav'>
             <li>
               <NavLink
-                className='btn btn-sec'
+                className='btn btn-quar'
                 to='/articles'
                 activeClassName='active'
               >
@@ -55,7 +55,7 @@ function Header(props) {
             </li>
             <li>
               <NavLink
-                className='btn btn-sec'
+                className='btn btn-quar'
                 to='/settings'
                 activeClassName='active'
               >
@@ -74,7 +74,7 @@ function Header(props) {
             </li>
             <li>
               <NavLink
-                className='btn btn-sec'
+                className='btn btn-quar'
                 to={`/profile/${props.loggedUser.username}`}
                 activeClassName='active'
               >
@@ -86,7 +86,7 @@ function Header(props) {
                 onClick={(event) => {
                   props.logoutUser(props.history);
                 }}
-                className='btn btn-sec'
+                className='btn btn-quar'
               >
                 Logout
               </button>

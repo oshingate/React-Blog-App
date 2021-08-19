@@ -28,12 +28,13 @@ class Tags extends Component {
                   <li key={i}>
                     <a
                       href='#'
-                      className='btn btn-sec'
+                      // className='btn btn-sec'
+                      className='button-tag'
                       onClick={(event) => {
                         this.props.handleTagClick(tag);
                       }}
                     >
-                      {tag}
+                      #{tag}
                     </a>
                   </li>
                 );

@@ -1,12 +1,17 @@
 //header{
 .header {
-  padding: 1rem;
-  background-color: $gray;
-  margin-bottom: 2rem;
+  padding: 0.7rem;
+  // background-color: $gray;
+  margin-bottom: 0.5rem;
   strong {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    padding: 0.5rem;
     font-weight: 900;
-    color: $pri;
+
+    background: -webkit-linear-gradient($ter, $quar);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic;
   }
   .header-nav {
     & > * {
@@ -16,13 +21,13 @@
       background-color: chocolate;
     }
     .active {
-      background-color: chocolate;
+      background-color: red;
     }
   }
 }
 footer {
   padding: 1rem;
-  background-color: $gray;
+  // background-color: $gray;
   margin-top: 1rem;
   small {
     font-size: 0.7rem;

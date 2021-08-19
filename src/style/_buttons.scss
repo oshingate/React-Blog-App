@@ -1,0 +1,38 @@
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+.btn-pri {
+  background-color: $pri;
+  color: wheat;
+}
+.btn-sec {
+  background-color: $sec;
+  color: white;
+}
+.btn-ter {
+  background-color: $gray;
+  border: 1px solid $text-gray;
+}
+.btn-quar {
+  background: linear-gradient(to top right, $ter, $quar);
+  color: white;
+  &:hover {
+    color: wheat;
+  }
+}
+
+.button-tag {
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+  padding: 0.25rem 0.7rem 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  color: wheat;
+  background: linear-gradient(to right, rgb(110, 110, 163), rgb(160, 132, 81));
+  &:hover {
+    color: white;
+  }
+}

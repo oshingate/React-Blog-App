@@ -93,6 +93,7 @@
 
   .comments-div {
     margin-top: 1rem;
+
     .comment {
       max-width: 700px;
       margin: 0.5rem auto;
@@ -105,10 +106,13 @@
         border-radius: 10px;
       }
       .comment-footer {
-        background-color: rgb(194, 192, 192);
+        background-color: rgb(202, 123, 123);
         border: none;
         border-radius: 0 0 10px 10px;
         padding: 1rem;
+        a {
+          color: rgb(18, 155, 36);
+        }
         img {
           height: 2rem;
           width: 2rem;
@@ -124,6 +128,38 @@
         }
       }
     }
+
+    // .comment {
+    //   max-width: 700px;
+    //   margin: 0.5rem auto;
+    //   border: 1px solid $text-gray;
+    //   border-radius: 10px;
+    //   .comment-body {
+    //     width: 100%;
+    //     padding: 1rem;
+    //     border: none;
+    //     border-radius: 10px;
+    //   }
+    //   .comment-footer {
+    //     background-color: rgb(194, 192, 192);
+    //     border: none;
+    //     border-radius: 0 0 10px 10px;
+    //     padding: 1rem;
+    //     img {
+    //       height: 2rem;
+    //       width: 2rem;
+    //       border-radius: 50%;
+    //       margin-right: 0.5rem;
+    //     }
+    //     h5 {
+    //       font-size: 1rem;
+    //       margin: 0.2rem 0;
+    //     }
+    //     h6 {
+    //       font-size: 0.7rem;
+    //     }
+    //   }
+    // }
   }
 }
 

@@ -5,7 +5,7 @@ import HomeArticle from './homeMain/HomeArticle';
 import Loader from '../../Loader';
 import Tags from './homeMain/Tags';
 import { Articles_URL, User_URL } from '../../../utils/constants';
-import UserContext from '../../../utils/UserContext';
+import UserContext, { UserConsumer } from '../../../utils/UserContext';
 
 class HomeMain extends Component {
   constructor(props) {
@@ -13,16 +13,18 @@ class HomeMain extends Component {
     this.state = {
       articles: null,
       currentTag: 'global',
+      loggedUser: null,
     };
   }
 
   static contextType = UserContext;
 
   componentDidMount() {
+    const { token } = this.context;
     fetch(Articles_URL)
       .then((res) => res.json())
       .then((articles) => {
-        this.setState({ articles: articles.articles });
+        this.setState({ articles: articles.articles, token: token });
       });
   }
 
@@ -66,88 +68,102 @@ class HomeMain extends Component {
 
   render() {
     return (
-      <div className='container flex fw sec-padding'>
-        <section className='home-sec flex-80 mobilFlex-80 '>
-          <div className='home-tags-div'>
-            <ul className='flex '>
-              {this.state.currentTag === 'global' ? (
-                <>
-                  <li className='color-pri'>
-                    <a
-                      className='color-pri '
-                      href='#'
-                      onClick={(event) => this.handleTagClick('personal')}
-                    >
-                      Personal Feed
-                    </a>
-                  </li>
-                  <li className='color-pri'>
-                    <a className='color-pri active' href='#'>
-                      Global Feed
-                    </a>
-                  </li>
-                </>
-              ) : this.state.currentTag === 'personal' ? (
-                <>
-                  <li className='color-pri'>
-                    <a className='color-pri active ' href='#'>
-                      Personal Feed
-                    </a>
-                  </li>
-                  <li className='color-pri'>
-                    <a
-                      className='color-pri '
-                      href='#'
-                      onClick={(event) => this.handleTagClick('global')}
-                    >
-                      Global Feed
-                    </a>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className='color-pri'>
-                    <a
-                      className='color-pri '
-                      href='#'
-                      onClick={(event) => this.handleTagClick('personal')}
-                    >
-                      Personal Feed
-                    </a>
-                  </li>
-                  <li className='color-pri'>
-                    <a
-                      className='color-pri'
-                      href='#'
-                      onClick={(event) => this.handleTagClick('global')}
-                    >
-                      Global Feed
-                    </a>
-                  </li>
-                  <li className='color-pri'>
-                    <a className='color-pri active' href='#'>
-                      #{this.state.currentTag}
-                    </a>
-                  </li>
-                </>
-              )}
-            </ul>
-            <hr />
-          </div>
+      <UserConsumer>
+        {(props) => {
+          return (
+            <div className='container flex fw sec-padding'>
+              <section className='home-sec flex-80 mobilFlex-80 '>
+                <div className='home-tags-div'>
+                  <ul className='flex '>
+                    {this.state.currentTag === 'global' ? (
+                      <>
+                        {props.loggedUser ? (
+                          <li className='color-pri'>
+                            <a
+                              className='color-pri '
+                              href='#'
+                              onClick={(event) =>
+                                this.handleTagClick('personal')
+                              }
+                            >
+                              Personal Feed
+                            </a>
+                          </li>
+                        ) : (
+                          ''
+                        )}
+                        <li className='color-pri'>
+                          <a className='color-pri active' href='#'>
+                            Global Feed
+                          </a>
+                        </li>
+                      </>
+                    ) : this.state.currentTag === 'personal' ? (
+                      <>
+                        <li className='color-pri'>
+                          <a className='color-pri active ' href='#'>
+                            Personal Feed
+                          </a>
+                        </li>
+                        <li className='color-pri'>
+                          <a
+                            className='color-pri '
+                            href='#'
+                            onClick={(event) => this.handleTagClick('global')}
+                          >
+                            Global Feed
+                          </a>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className='color-pri'>
+                          <a
+                            className='color-pri '
+                            href='#'
+                            onClick={(event) => this.handleTagClick('personal')}
+                          >
+                            Personal Feed
+                          </a>
+                        </li>
+                        <li className='color-pri'>
+                          <a
+                            className='color-pri'
+                            href='#'
+                            onClick={(event) => this.handleTagClick('global')}
+                          >
+                            Global Feed
+                          </a>
+                        </li>
+                        <li className='color-pri'>
+                          <a className='color-pri active' href='#'>
+                            #{this.state.currentTag}
+                          </a>
+                        </li>
+                      </>
+                    )}
+                  </ul>
+                  <hr />
+                </div>
 
-          {this.state.articles ? (
-            <div className='home-articles-div'>
-              {this.state.articles.map((article, i) => {
-                return <HomeArticle article={article} key={article.slug} />;
-              })}
+                {this.state.articles ? (
+                  <div className='home-articles-div'>
+                    {this.state.articles.map((article, i) => {
+                      return (
+                        <HomeArticle article={article} key={article.slug} />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <Loader />
+                )}
+              </section>
+
+              <Tags handleTagClick={this.handleTagClick} />
             </div>
-          ) : (
-            <Loader />
-          )}
-        </section>
-
-        <Tags handleTagClick={this.handleTagClick} />
-      </div>
+          );
+        }}
+      </UserConsumer>
     );
   }
 }
